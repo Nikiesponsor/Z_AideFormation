@@ -1,0 +1,141 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="historique mt-5">
+    {% if messages   %}
+    {%  for message in messages  %}
+        {%  if message.tags == 'success'   %}
+           <script >
+                 swal({
+                    title:"{{message}}",
+                    text:"",
+                    icon:"success"
+                 })      
+           </script>
+        {% else   %}
+            <script >
+                swal({
+                  title:"{{message}}",
+                  text:"",
+                  icon:"error"
+                })      
+            </script>
+        {%endif%}
+                       
+  {%endfor%}
+  {% endif %} 
+    <div class="titre">
+        <h3 data-bs-toggle="offcanvas" data-bs-target="#historisque" aria-controls="offcanvasBottom">Z_help-day <i class="bx bxs-chevron-down" data-bs-toggle="offcanvas" data-bs-target="#historisque" aria-controls="offcanvasBottom"></i></h3>
+        <div class="offcanvas offcanvas-bottom indic" tabindex="-1" id="historisque" aria-labelledby="offcanvasBottomLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title text-black" id="offcanvasBottomLabel">Type de résultat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body small">
+                <div class="minicard ok">
+                    <i class="bx bxs-check-circle me-2"></i>
+                    <a href="{% url 'Quiz:resultquizjour'  %}">Z_help-day</a>
+                </div>
+                <div class="minicard ">
+                    <i class="bx bxs-check-circle me-2"></i>
+                    <a href="{% url 'programme:generalresultats'  %}">Quiz Niveau</a>
+                </div>
+                <div class="minicard ">
+                    <i class="bx bxs-check-circle me-2"></i>
+                    <a href="{% url 'programme:quizresulte' %}">Quiz Module</a>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+    <div class="deatails">
+       <div class="present">
+            <div class="compte">
+                <div class="box">
+                    <div class="icon">
+                        <i class="bx bxs-extension text-light p-1  " style="background: #3e8dae; border-radius: 10px;" ></i>
+                    </div>
+                    <div class="val">
+                        <h5>Nombre de Quiz Joués</h5>
+                        <span class="purecounter" data-purecounter-start="0" data-purecounter-end={{Quizresul.count}} data-purecounter-duration="1">20</span>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="bx bxs-trophy text-light p-1  " style="background: #b3ab43; border-radius: 10px;" ></i>
+                    </div>
+                    <div class="val">
+                        <h5>Nombre de Quiz Gagnés</h5>
+                        <span class="purecounter" data-purecounter-start="0" data-purecounter-end={{valider}} data-purecounter-duration="2"></span>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon">
+                        <i class="bx bx-window-close text-light p-1  bg-danger " style=" border-radius: 10px;" ></i> 
+                    </div>
+                    <div class="val">
+                        <h5>Nombre de Quiz Perdus</h5>
+                        <span class="purecounter" data-purecounter-start="0" data-purecounter-end={{echec}} data-purecounter-duration="2"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="progresss">
+                <h1  > <b class="purecounter" data-purecounter-start="0" data-purecounter-end={{progre}} data-purecounter-duration="2"></b>%</h1>
+                <span> progression</span>
+            </div>
+       </div> 
+        <div class="game">
+            <a href="{% url 'Quiz:quiz' %}">Nouvelle partie</a>
+        </div>
+    </div>
+    {% for quiz in Quizresul   %}
+    <div class="titreQuiz">
+        <div class="present">  
+            <p> <b class="text-muted">{{quiz.date}} </b></p>
+            <h4> {{quiz.quiz.nomQuiz}} N° {{quiz.quiz.numeroQuiz}} </h4>
+
+        </div>
+        <div class="icon">
+            <a href="" data-bs-toggle="modal" data-bs-target="#e{{quiz.pk}}">  <i class="bx bxs-trash"></i></a>
+            <div class="modal fade" id="e{{quiz.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header ">
+                      <h5 class="modal-title text-black" id="exampleModalLabel">Attention</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modal-body-confirm">
+                        <div class="text-center suppicon"> 
+                            <i class="bx bxs-coupon ">  </i>
+                        </div>                     
+                        <p class="fw-bold text-center" style="font-size: 15px; color: #555;"> Etes-vous sur de vouloir supprimé ?</p>                                              
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+                      <a type="button" class="btn btn-success" id=star href="{% url 'Quiz:supQuizjour' int_quiz=quiz.pk  %}">Oui</a>
+                    </div>
+                  </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="BodyQuiz">
+        <p>Nombre de Question: <b>{{quiz.quiz.nombreDequestion}} </b>.</p>
+        <p>votre score: <b>{{quiz.score}}%</b>.</p>
+        {% if quiz.score >= quiz.quiz.score  %}
+        <p> Status  : <span class="text-light bg-success p-1"> <b>Valider</b>  </span>  </p>
+        {%else%}
+        <p> Status: <span class="text-light bg-danger p-1"> <b>Echouer</b>  </span> </p>
+        {% endif  %}
+        <a href="{% url 'Quiz:ResultcorrectionJour' int_quiz=quiz.quiz.pk %}" class="btn btn-primary fw-bold mt-2" > Correction detailée</a>
+    </div>
+    {%endfor%}
+</section>
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}

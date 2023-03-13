@@ -1,0 +1,66 @@
+{% extends 'base.html'  %}
+{% load myfilter %}
+{% load static %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bx-extension"></i>
+            </div>        
+            <p>{{quiz.niveauQuiz}} </p>
+        </div>
+        <p></p>
+    </div>
+</section>
+
+<section class="results h5">
+    {% for q in quiz.get_question  %}
+    <div class="question h5">
+        <div class="number me-2">
+           <p>{{forloop.counter}} </p>
+        </div>
+        <p>
+           <b> Question :</b>{{q.text|safe}}
+        </p>
+    </div>
+
+    <div class="resulta" >
+        {% for a in q.get_reponse %}
+         {% if a.correct == True  %}
+        <div class="cards A">
+            <div class="leter">
+                <p> {{forloop.counter|to_char}}</p>
+           </div>
+           <div class="present">
+               <p>
+                  {{a.text|safe}}
+               </p>         
+           </div>
+           <div class="icon">
+               <i class="bx bxs-badge-check"></i>
+           </div>
+        </div>
+        {%else%}
+        <div class="cards B">
+            <div class="leter">
+                <p>{{forloop.counter|to_char}}</p>
+           </div>
+           <div class="present">
+            <p>{{a.text|safe}}</p>                
+           </div>
+           <div class="icon">
+               <i class="bx bxs-x-circle"></i>
+           </div>
+        </div>
+        {%endif%}
+        {%endfor%}
+    </div>
+{%endfor%}
+</section>
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}

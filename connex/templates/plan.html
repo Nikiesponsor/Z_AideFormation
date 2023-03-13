@@ -1,0 +1,129 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bxs-category-alt"></i>
+            </div>
+            {%if safe == 'BASIC'%}        
+            <p>votre plan d'adhesion est {{safe}}</p>
+            {%elif  safe == 'MEDIUM'%}
+            <p>votre plan d'adhesion est {{safe}}</p>
+            {%elif safe == 'PRO'%}
+            <p>votre plan d'adhesion est {{safe}}</p>
+            {%else%}
+            <p>votre plan d'adhesion est FREE</p>
+            {%endif%}
+        </div>
+        <p>Profitez de nos meilleures contenue! </p>
+        <p class="path">
+            <a href="{% url 'connex:home' %}">Acceuil</a>
+            <i class="bx bxs-chevron-right"></i>
+            <a href="">Plan d'adhesion </a>
+        </p>
+    </div>
+</section>
+
+<section class="pricings">
+    {% if messages   %}
+    {%  for message in messages  %}
+        {%  if message.tags == 'success'   %}
+           <script >
+                 swal({
+                    title:"{{message}}",
+                    text:"",
+                    icon:"success",
+                 })      
+           </script>
+        {% else   %}
+            <script >
+                swal({
+                  title:"{{message}}",
+                  text:"",
+                  icon:"error",
+                })      
+            </script>
+        {%endif%}                       
+  {%endfor%}
+  {% endif %} 
+    <div class="pricing-section">
+        <div class="section-pricing C">
+            <h3>FREE</h3>
+            <div class="price"> <span>0</span> <sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-free.png" class="img-fluid">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day(limité).</b>.</li>
+                <li class="na"><i class="bx bx-check"></i><b>Quizs  Niveau</b>.</li>
+                <li class="na"><i class="bx bx-check"></i><b>Quizs de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+            </ul>
+            <!-- <a href="" class="btn-buy" >Achetez</a> -->
+        </div>
+        <div class="section-pricing D">
+            <h3>BASIC</h3>
+            <div class="price"> 1000 <sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-starter.png" class="img-fluid">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 30 jours</b>.</li>
+            </ul>
+            {%if safe == 'BASIC' %}
+            <a href="{% url 'connex:souscrib'%}?plan=BASIC" class="btn-buy" >Rénouvelez</a>
+            {%else%}
+            <a href="{% url 'connex:souscrib'%}?plan=BASIC" class="btn-buy" >Achetez</a>
+            {%endif%}
+        </div>
+        <div class="section-pricing A">
+            <span class="featured">Z_aide</span>
+            <h3>MEDIUM</h3>
+            <div class="price">2000<sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-business.png" class="img-fluid">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 3 Mois</b>.</li>
+            </ul>
+            {%if safe == 'MEDIUM' %}
+            <a href="{% url 'connex:souscrib'%}?plan=MEDIUM" class="btn-buy" >Rénouvelez</a>
+            {%else%}
+            <a href="{% url 'connex:souscrib'%}?plan=MEDIUM" class="btn-buy" >Achetez</a>
+            {%endif%}
+        </div>
+        <div class="section-pricing B">
+            <span class="featured">Z_aide</span>
+            <h3>PRO</h3>
+            <div class="price">5000<sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-ultimate.png" class="img-fluid">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 5 mois</b>.</li>
+            </ul>
+            {%if safe == 'PRO' %}
+            <a href="{% url 'connex:souscrib'%}?plan=PRO" class="btn-buy" >Rénouvelez</a>
+            {%else%}
+            <a href="{% url 'connex:souscrib'%}?plan=PRO" class="btn-buy" >Achetez</a>
+            {%endif%}
+            
+        </div>
+    </div>
+</section>
+
+<!-- <div id="preloader"></div> -->
+
+
+{% include 'footer.html' %}
+{% endblock  %}

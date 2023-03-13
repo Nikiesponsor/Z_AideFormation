@@ -1,0 +1,40 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+
+
+{% if messages   %}
+{%  for message in messages  %}
+    {%  if message.tags == 'success'   %}
+       <script >
+             swal({
+                title:"{{message}}",
+                text:"Veuillez consultez votre boite mail pour activé votre compte",
+                icon:"success",
+                buttons: false,
+                timer: 3000
+             })      
+       </script>
+    {% else   %}
+        <script >
+            swal({
+              title:"{{message}}",
+              text:"",
+              icon:"error",
+              buttons: false,
+              timer: 3000
+            })      
+        </script>
+    {%endif%}                       
+{%endfor%}
+<section class="notification">  
+    <div class="image">
+        <img src="/static/assets/img/mail.png" class="img-fluid">      
+    </div>
+    <h5>Veuillez consultez votre boite mail pour activé <br/> votre compte</h5>
+</section>
+
+{% endif %} 
+{% include 'footer.html' %}
+{% endblock  %}

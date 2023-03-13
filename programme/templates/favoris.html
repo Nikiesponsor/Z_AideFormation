@@ -1,0 +1,137 @@
+{% extends 'base.html'  %}
+{% load static %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5" style="padding-bottom: 0;">
+  <div class="second">
+      <div class="present">
+          <div class="icon">
+              <i class="bx bxs-heart"></i>
+          </div>        
+          <p> Vos favoris </p>
+      </div>
+      <p>Listes de favoris</p>
+      <p class="path">
+        <a href="{% url 'connex:home' %}">Acceuil</a>
+        <i class="bx bxs-chevron-right"></i>
+        <a href="">Favoris</a>
+    </p>
+  </div>
+</section>
+<section id="features" class="features">
+  <div class="container" data-aos="fade-up">
+
+    <ul class=" nav nav-tabs row gy-4 d-flex justify-content-center"  >
+      <li class="nav-item col-6 col-md-4 col-lg-2">
+        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+          <i class="bx bxs-heart color-cyan" style="color: red;"></i>
+          <h4>Favoris Matières/domaine d'étude</h4>
+        </a>
+      </li>
+
+      <li class="nav-item col-6 col-md-4 col-lg-2">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
+          <i class="bx bxs-star  color-indigo" style="color: #52b8c5;"></i>
+          <h4>Favoris Modules</h4>
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active show" id="tab-1">
+        <section class="team-section ">
+          {% if messages   %}
+          {%  for message in messages  %}
+              {%  if message.tags == 'success'   %}
+                 <script >
+                       swal({
+                          title:"{{message}}",
+                          text:"",
+                          icon:"success"
+                       })      
+                 </script>
+              {% else   %}
+                  <script >
+                      swal({
+                        title:"{{message}}",
+                        text:"",
+                        icon:"error"
+                      })      
+                  </script>
+              {%endif%}
+                             
+        {%endfor%}
+        {% endif %}
+        {% if favmatiere == 'False' %}
+        <div class="favcheck">
+          <div class="fav">
+            <div class="icon">
+              <img src="/static/assets/img/coeur3.png" class="img-fluid" >
+              <!-- <i class="bx bxs-star"  ></i> -->
+            </div>
+            <h5>Votre liste de favoris est vide</h5>
+            <p>Ajouter les éléments qui vous intéressent pour un accès rapide</p>
+          </div>
+        </div>       
+        {%else%}
+          <div class="section-team">
+            {% for matiere   in favoris   %}
+              <div class="section-cards">
+                  <img src="/static/assets/img/books2.jpg"></img>
+                  <div class="icon icons">               
+                      <a   href="{% url 'programme:favoris_add' int_matiere=matiere.pk  %}" >  <i class="bx bx-trash" style="font-size: 20px; color: red;"></i></a>     
+                    </div>
+                  <h4>
+                     <a href="{%  url 'programme:lecon' int_niveau=matiere.matiere_niveau.pk int_matiere=matiere.pk  %}">{{matiere.Nom_matiere}}</a>
+                     <p>({{matiere.matiere_niveau}})</p>
+                  </h4>
+                  <ul class="link">
+                    <li style="padding-bottom:0 ;"><i class="bx bxs-dashboard" style="font-size: 16px;"></i> <span>Cours(Resumé)</span> </li>
+                    <li style="padding-bottom:0 ;"><i class="bx bxs-dashboard" style="font-size: 16px;"></i> <span>Qcms</span></li>
+                    <li style="padding-bottom:0 ;"><i class="bx bxs-dashboard" style="font-size: 16px;"></i> <span>Exercices & Corrige</span></li>
+                  </ul>
+                  <div  class="btn-lecon">
+                    <a   href="{%  url 'programme:lecon' int_niveau=matiere.matiere_niveau.pk int_matiere=matiere.pk  %}"  ><i class="bx bx-right-arrow-alt"></i></a>
+                  </div> 
+              </div>
+            {%endfor%}
+          </div>
+          {%endif%}
+        </section>
+      </div>
+
+      <div class="tab-pane" id="tab-2">
+        {% if favlecon == 'False'  %}
+        <div class="favcheck">
+          <div class="fav">
+            <div class="icon">
+              <img src="/static/assets/img/coeur3.png" class="img-fluid" >
+              <!-- <i class="bx bxs-star"  ></i> -->
+            </div>
+            <h5>Votre liste de favoris est vide</h5>
+            <p>Ajouter les éléments qui vous intéressent pour un accès rapide</p>
+          </div>
+        </div> 
+        {% else  %}
+        <section class="check mt-5">
+          <div class="section-check">
+            {% for lecon  in favorislecon  %}
+              <div class="check-card B">
+                  <div class="icon a"><i class="bx bxs-layer"></i></div>
+                  <p><a href="{%  url 'programme:details' int_niveau=lecon.lecon_niveau.pk int_matiere=lecon.lecon_matiere.pk int_lecon=lecon.pk  %}">{{lecon.Nom_lecon}}</a></p> 
+                  <div class="icon b"><a href="{% url 'programme:favorislecondel' int_lecon=lecon.pk  %}" > <i class="bx bx-trash"  style="font-size: 20px; color: red;"></i></a></div>  
+              </div>
+            {%endfor%}   
+          </div>
+      </section> 
+      {%endif%}     
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- <div id="preloader"></div> -->
+
+{% include 'footer.html' %}
+{% endblock  %}

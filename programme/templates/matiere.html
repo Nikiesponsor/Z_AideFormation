@@ -1,0 +1,193 @@
+{% extends 'base.html'  %}
+{% load static %}
+{% load myfilter %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5">
+  <div class="second">
+      <div class="present">
+          <div class="icon">
+              <i class="bx bxs-category-alt"></i>
+          </div>        
+          <p>Matières & Quiz General </p>         
+     </div>
+      <p></p>
+      <p class="path">
+        <a href="{% url 'connex:home' %}">Acceuil</a>
+        <i class="bx bxs-chevron-right"></i>
+        <a href="">{{niveau.Nom_niveau}}</a>
+      </p>      
+  </div>
+</section>
+<div class="section-header">
+  <h2>{{niveau.Nom_niveau}}</h2>
+</div>
+<section class="Quizs">
+  <div class="sectionQuiz">
+    <div class="image1">
+      <img src="/static/assets/img/logoZ.png">
+
+    </div>
+    
+    <div class="present">
+      <h1>Quizs de {{niveau.Nom_niveau|lower}} </h1>
+      <ul> 
+          <li><i class="bx bxs-dashboard"></i> <span>Culture générale.</span> </li>
+          <li><i class="bx bxs-dashboard"></i> <span>Actualités.</span></li>
+          <li><i class="bx bxs-dashboard"></i> <span>Psychotechniques.</span></li>
+          <li><i class="bx bxs-dashboard"></i> <span>Etc.</span></li>
+      </ul>
+      {% if user.is_authenticated %}
+      <a href="{% url 'programme:GneralListquiz' int_niveau=niveau.pk  %}">Nouvelle partie</a>
+      {% else %}
+      <a href="" data-bs-toggle="modal" data-bs-target="#e">Nouvelle partie</a>
+      {%endif%}
+    </div>
+    <div class="image2">
+      <img src="/static/assets/img/ballon1.png">
+    </div>
+  </div>
+</section>
+<section class="team-section ">
+    {% if messages   %}
+    {%  for message in messages  %}
+        {%  if message.tags == 'success'   %}
+           <script >
+                 swal({
+                    title:"{{message}}",
+                    text:"",
+                    icon:"success"
+                 })      
+           </script>
+        {% else   %}
+            <script >
+                swal({
+                  title:"{{message}}",
+                  text:"",
+                  icon:"error"
+                })      
+            </script>
+        {%endif%}
+                       
+  {%endfor%}
+  {% endif %} 
+    <div class="section-team">
+      {% for matiere   in matieres   %}
+        <div class="section-cards">
+          <div>
+            <div>
+              <img src="/static/assets/img/books2.jpg"></img>
+            </div>
+            {% if user.is_authenticated %}
+            {%  if matiere.pk|check:request.user.id %}
+            <div class="icon icons">               
+                <button class="fav bx bxs-heart" value={{matiere.pk}}  > </button>              
+              </div>
+            {%else%}
+            <div class="icon icons">               
+              <button class="fav bx bx-heart"  value={{matiere.pk}} >  </button>     
+            </div>
+            {%endif%}
+            {%endif%}
+            <h4> <a href="{%  url 'programme:lecon' int_niveau=matiere.matiere_niveau.pk int_matiere=matiere.pk  %}">{{matiere.Nom_matiere}}</a></h4>
+            <ul class="link">
+              <li><i class="bx bxs-dashboard"></i> <span>Cours</span> </li>
+              <li><i class="bx bxs-dashboard"></i> <span>QCMs</span></li>
+              <li><i class="bx bxs-dashboard"></i> <span>Exercices & Corrigés</span></li>
+            </ul>            
+          </div>
+          <div  class="btn-lecon">
+              <a   href="{%  url 'programme:lecon' int_niveau=matiere.matiere_niveau.pk int_matiere=matiere.pk  %}"  ><i class="bx bx-right-arrow-alt"></i> </a>
+          </div> 
+            <!-- <hr> -->
+        </div>
+      {%endfor%}
+    </div>
+  </section>
+<div class="section-header">
+    <h2>les autres Niveaux</h2>
+</div>
+
+<section class="autre">
+  <div class="section-cards">
+    {%  for niv in nivs %}
+    {%if niv.Nom_niveau != niveau.Nom_niveau %}
+    <div class="cards">
+      <div class="img me-2"> 
+        <img src="/static/assets/img/niveauz.png">
+      </div>
+      <div class="body ">
+        <span>{{niv.Nom_niveau}}</span>
+        <ul class="star">
+          <li> <i class="bx bxs-star" ></i> </li>
+          <li> <i class="bx bxs-star" ></i> </li>
+          <li> <i class="bx bxs-star" ></i> </li>
+        </ul>
+      </div>
+      <div class="icon">
+        <a href="{%  url 'programme:matiere' int_niveau=niv.pk %}"><i class="bx bxs-chevron-right"></i></a>
+      </div>
+    </div>
+    {%else%}
+    {%endif%}
+    {%endfor%}
+    <div class="cards">
+      <div class="img me-2"> 
+        <img src="/static/assets/img/niveauz.png" >
+      </div>
+      <div class="body ">
+        <span>Z_help-day</span>
+        <ul class="star">
+          <li> <i class="bx bxs-star" ></i> </li>
+          <li> <i class="bx bxs-star" ></i> </li>
+          <li> <i class="bx bxs-star" ></i> </li>
+        </ul>
+      </div>
+      <div class="icon">
+        <a href="{% url 'Quiz:quiz'  %}"><i class="bx bxs-chevron-right"></i></a>
+        
+      </div>
+    </div>
+  </div>
+
+</section>
+<div class="modal fade connex" id="e" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h5 class="modal-title text-black" id="exampleModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-confirm">
+          <div class="group">
+              <h1> Z_Aide </h1>
+              <p>Rejoigner la communauté Z_Aide</p>           
+              <ul>
+                  <li><img src="/static/assets/img/Checklist_Monochromatic (1).png"></li>
+                  <li><img src="/static/assets/img/ballon1.png"></li>
+                  <li><img src="/static/assets/img/mail.png"></li>
+              </ul>
+              <p>Inscrivez pour  acceder aux Quizs</p>
+          </div>
+          <div class="present">
+              <a href="{%  url 'connex:register'  %}" class="inscription">Inscription <i class='bx bx-right-arrow-alt'></i></a>
+              <p>Inscrivez pour  acceder aux Quizs</p>
+              <span>Déja un compte? <a href="{%  url 'connex:log'  %}">Connexion</a></span>
+              
+          </div>         
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+        <a type="button" class="btn btn-success" id=star href="">Oui</a>
+      </div> -->
+    </div>
+  </div>
+</div> 
+<div id="preloader"></div>
+
+
+{% include 'footer.html' %}
+{% endblock  %}
+{% block scripts %}
+     <script src="{%  static  'assets/js/favoris.js' %}"></script>      
+{%  endblock %}

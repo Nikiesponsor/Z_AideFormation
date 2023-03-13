@@ -1,0 +1,122 @@
+<nav>
+    <div class="navbar">
+        <i class="bx bx-menu"></i>
+        <div class="logo">
+            <div><a href="{% url 'connex:home'  %}""> <span class="logo-menu"> Z_aide</span></a></div>
+            <div><a href="{% url 'connex:home'  %}""><span class="logo-menu-sub">Formation</span></a></div>            
+        </div>
+        <div class="nav-links">
+            <div class="sibar-logo">
+                <span class="logo-side">Z_aide</span>
+                <i class="bx bx-x"></i>
+            </div>
+            <ul class="links">
+                {% if request.user.is_superuser %}
+                <div class="profile">
+                    <img src="/static/assets/img/user1.png" class="img">
+                    <h1 class="text-uppercase"> 
+                        <a href="{% url 'connex:profile'  %}"><span>{{ request.user.last_name}} {{ request.user.first_name}} </span>
+                        </a>
+                        <a href="{% url 'connex:profilechange' %}"> <i class="bx bxs-edit"></i> </a>        
+                    </h1>
+                    <p class="">{{request.user}}</p>
+                </div>
+                 <div></div>
+                   <li> <a href="{% url 'connex:home'  %}"> <i  class="bx bxs-home" ></i> <span>Acceuil</span> </a></li>
+                   <li> <a href="{%  url 'admin:index'  %}"> <i  class="bx bx-home" ></i> <span>Admin</span> </a></li>
+                   <!-- <li class="begin"> <a href="{%  url 'programme:niveau' %}" > <i  class="bx bxs-category-alt" ></i> <span>Start!</span> </a></li> -->
+                   <li>
+                        <a href="#"><i class="bx bx-cog "></i>  <span>Parametre</span></a>
+                        <i class="bx bxs-chevron-down arrow "></i>
+                        <ul class="sub-menu">
+                            <li> <a href="{% url 'connex:profile'  %}"> <i class="bx bxs-user"></i>  <span>Profile</span> </a></li>
+                            <li> <a href="{%  url 'connex:profilechange'   %}"> <i class="bx bxs-user-detail"></i> <span>Modifier son profile</span></a></li>
+                            <li> <a href="{%  url 'connex:password_change'  %}"> <i class="bx bx bxs-key"></i> <span>Modifier votre mot de passe</span></a></li>
+                            <li> <a href="{%  url 'connex:plan' %}"> <i class="bx bx-credit-card"></i> <span>Mon abonnement</span></a></li>
+                        </ul>
+                   </li>
+                   <li> <a href="{% url 'programme:listefavoris' %}"><i class="bx bxs-heart" ></i> <span>Favoris</span></a></li>
+                   <li>
+                    <a href="#"><i class="bx bxs-objects-horizontal-left "></i>  <span>Statistiques</span></a>
+                    <i class="bx bxs-chevron-down arrow "></i>
+                    <ul class="sub-menu">
+                        <li> <a href="{% url 'programme:stat'  %}"> <i class="bx bxs-objects-horizontal-left"></i>  <span>Tous</span> </a></li>
+                        <li> <a href="{% url 'Quiz:resultquizjour'  %}"> <i class="bx bxs-objects-horizontal-left"></i> <span>Z_help-day</span></a></li>
+                        <li> <a href="{% url 'programme:generalresultats' %}"> <i class="bx bxs-objects-horizontal-left"></i> <span>Quiz niveau</span></a></li>
+                        <li> <a href="{%  url 'programme:quizresulte' %}"> <i class="bx bxs-objects-horizontal-left"></i> <span>Quiz de Module</span></a></li>
+                    </ul>
+                   </li>
+                   <li> <a href="{%  url 'programme:notification'  %}"><i class="bx bxs-bell" ></i> <span>Notifications</span></a></li>
+                   <!-- <li> <a href="{% url 'comment:info'  %}"><i class="bx bx-trip" ></i> <span>Infos. concours</span></a></li> -->
+                   <li> <a href="{%  url 'connex:orientation'  %}"><i class="bx bx-trip" ></i> <span>S'orienter</span></a></li>
+    
+               {% elif user.is_authenticated %}
+               <div class="profile">
+                <img src="/static/assets/img/user1.png" class="img">
+                <h1 class="text-uppercase"> 
+                    <a href="{% url 'connex:profile'  %}"><span>{{ request.user.last_name}} {{ request.user.first_name}} </span>
+                    </a>
+                    <a href="{% url 'connex:profilechange' %}"> <i class="bx bxs-edit"></i> </a>        
+                </h1>
+                <p class="">{{request.user}}</p>
+               </div>
+               <li> <a href="{% url 'connex:home'  %}"> <i  class="bx bxs-home" ></i> <span>Acceuil</span> </a></li>
+               <!-- <li class="begin"> <a href="{%  url 'programme:niveau' %}" > <i  class="bx bxs-category-alt" ></i> <span >Start!</span> </a></li> -->
+
+               <li>
+                <a href="#"><i class="bx bx-cog "></i>  <span>Parametre</span></a>
+                    <i class="bx bxs-chevron-down arrow "></i>
+                    <ul class="sub-menu">
+                        <li> <a href="{% url 'connex:profile'  %}"> <i class="bx bxs-user"></i>  <span>Profile</span> </a></li>
+                        <li> <a href="{%  url 'connex:profilechange'   %}"> <i class="bx bxs-user-detail"></i> <span>Modifier son profile</span></a></li>
+                        <li> <a href="{%  url 'connex:password_change'  %}"> <i class="bx bx bxs-key"></i> <span>Modifier votre mot de passe</span></a></li>
+                        <li> <a href="{%  url 'connex:plan' %}"> <i class="bx bx-credit-card"></i> <span>Mon abonnement</span></a></li>
+                    </ul>
+               </li>
+               <li> <a href="{% url 'programme:listefavoris' %}"><i class="bx bxs-heart" ></i> <span>Favoris</span></a></li>
+               <li>
+                <a href="#"><i class="bx bxs-objects-horizontal-left "></i>  <span>Statistiques</span></a>
+                <i class="bx bxs-chevron-down arrow "></i>
+                <ul class="sub-menu">
+                    <li> <a href="{% url 'programme:stat'  %}"> <i class="bx bxs-objects-horizontal-left"></i>  <span>Tous</span> </a></li>
+                    <li> <a href="{% url 'Quiz:resultquizjour'  %}"> <i class="bx bxs-objects-horizontal-left"></i> <span>Z_help-day</span></a></li>
+                    <li> <a href="{% url 'programme:generalresultats' %}"> <i class="bx bxs-objects-horizontal-left"></i> <span>Quiz niveau</span></a></li>
+                    <li> <a href="{%  url 'programme:quizresulte' %}"> <i class="bx bxs-objects-horizontal-left"></i> <span>Quiz de Module</span></a></li>
+                </ul>
+               </li>
+               <li> <a href="{%  url 'programme:notification'  %}"><i class="bx bxs-bell" ></i> <span>Notifications</span></a></li>
+               <!-- <li> <a href="{% url 'comment:info'  %}"><i class="bx bx-trip" ></i> <span>Infos. concours</span></a></li> -->
+               <li> <a href="{%  url 'connex:orientation'  %}"><i class="bx bx-trip" ></i> <span>S'orienter</span></a></li>
+               
+               
+               {% else %}
+               <li> <a href="{% url 'connex:home'  %}"> <i  class="bx bxs-home" ></i> <span>Acceuil</span></a></li>
+               <li><a href="{% url 'connex:log'  %}"> <i class="bx bxs-log-in-circle"></i> <span>Connexion</span></a></li>
+               <li> <a href="{% url 'connex:register'  %}"> <i class="bx bxs-book-content"></i> <span>Inscription</span></a></li>
+               <li> <a href="{% url 'connex:abonnement' %}"><i class="bx bx-credit-card k" ></i>  <span>Abonnement</span></a></li>
+               <li> <a href="{%  url 'connex:orientation'  %}"><i class="bx bx-trip" ></i> <span>S'orienter</span></a></li>
+               {%endif%}
+
+               <footer>
+                <div class="info">
+                    <p> © Copyright <span>Z_Aide.</span>  All Rights Reserved </p>
+                    <p> Designed by <a href="#">IfontWeb</a></p>
+                </div>       
+               </footer>  
+            </ul>
+        </div>       
+        <div class="double">
+            {% if request.user.is_authenticated %}
+            <div class="login">
+                <a href="{% url 'connex:deconnexion'  %}"><i class="bx bx-power-off" > </i> </a>
+            </div>
+            {% else %}
+            <div class="login">
+                <a href="{% url 'connex:log'  %}"><i class="bx bx-log-in-circle" > </i></a>
+            </div>
+            {% endif %}
+        </div>
+      
+    </div>
+</nav>
+<script src="/static/assets/js/sweetalert.min.js"></script>

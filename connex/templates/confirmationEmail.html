@@ -1,0 +1,7 @@
+{%  autoescape off %}
+Bienvenue sur Z_Aide 
+Bonjour/Bonsoir {{nom}} {{prenom}}
+Confirmer la validation de votre compte en cliquant sur ce le lien ci-dessous
+
+Lien :https//{{domain}}{%  url 'connex:activation'  uid64=uid token=token  %}
+{% endautoescape %}

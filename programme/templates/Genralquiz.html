@@ -1,0 +1,194 @@
+{% extends 'base.html'  %}
+{% load static %}
+{% load myfilter %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5">
+  <div class="second">
+      <div class="present">
+          <div class="icon">
+              <i class="bx bx-extension"></i>
+          </div>        
+          <p>Listes de Quiz General {{niveau.Nom_niveau}}</p>
+          {%  if nombre >= 5 %}
+          {%else%}
+          <div class="iconalert">
+              <i class='bx bxs-bell-ring' data-bs-toggle="modal" data-bs-target="#e"></i>
+          </div>
+          {%endif%}            
+      </div>
+      <p>Prenez part au Quiz de votre choix afin d'améliorer votre niveau. </p>
+  </div>
+</section>
+
+<section class="quizselects">
+    <div class="section-header">
+      <h2>Préparez-vous!</h2>
+    </div>
+    {% if fav == 'False' %}
+    <div class="favcheck">
+      <div class="fav">
+        <div class="icon">
+          <!-- <img src="/static/assets/img/alert.png" class="img-fluid" > -->
+          <i class="bx bxs-error"  ></i>
+        </div>
+        <h5>Les Quizs ne sont pas disponible pour le moments.</h5>
+        <p></p>
+      </div>
+    </div>
+    {%else%}
+    <div class="selects">
+        {% for quiz in quizs  %}
+        {% if quiz.etat|veri2 == 'indisponible' and request.user.is_superuser %}
+        <div class="cards">
+            <div class="img">
+                <img src="/static/assets/img/logoZ.png" >
+            </div>
+            <div class="detail">
+                <h5>{{quiz.nomQuiz}} N°: {{quiz.numeroQuiz}}</h5>
+                <div class="icon">
+                    {% if quiz.dificulte == "Difficile"  %}
+                    <p><b>{{quiz.dificulte}}</b></p> 
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    {% elif quiz.dificulte == "Normal" %} 
+                    <p><b>{{quiz.dificulte}}</b></p> 
+                    <i class="bx bxs-star"></i>
+                    <i class="bx bxs-star"></i>
+                    {% else  %}
+                    <p><b>{{quiz.dificulte}}</b></p> 
+                    <i class="bx bxs-star"></i>
+                    {%endif%}
+                </div>
+            </div>
+            <div class="btn">
+                <a href="#" class="btn-play modal-buton" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-pk="{{ quiz.pk }}"
+                    data-quizs="{{ quiz.nomQuiz }}"
+                    data-question="{{quiz.nombreDequestion}}"
+                    data-dificulte="{{quiz.dificulte}}"
+                    data-time="{{quiz.temps}}"
+                    data-score="{{quiz.score}}"
+                    data-matiere="{{quiz.matierequiz}}"
+                
+                ></a>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Quiz</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="modal-body-confirm">
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annulé</button>
+                          <button type="button" class="btn btn-success" id="star" href="#">Continuer</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+            </div>
+        </div>
+        {%elif quiz.etat|veri2 == 'disponible'%}
+        <div class="cards">
+          <div class="img">
+              <img src="/static/assets/img/logoZ.png" >
+          </div>
+          <div class="detail">
+              <h5>{{quiz.nomQuiz}} N°: {{quiz.numeroQuiz}}</h5>
+              <div class="icon">
+                  {% if quiz.dificulte == "Difficile"  %}
+                  <p><b>{{quiz.dificulte}}</b></p> 
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  {% elif quiz.dificulte == "Normal" %} 
+                  <p><b>{{quiz.dificulte}}</b></p> 
+                  <i class="bx bxs-star"></i>
+                  <i class="bx bxs-star"></i>
+                  {% else  %}
+                  <p><b>{{quiz.dificulte}}</b></p> 
+                  <i class="bx bxs-star"></i>
+                  {%endif%}
+              </div>
+          </div>
+          <div class="btn">
+              <a href="#" class="btn-play modal-buton" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-pk="{{ quiz.pk }}"
+                  data-quizs="{{ quiz.nomQuiz }}"
+                  data-question="{{quiz.nombreDequestion}}"
+                  data-dificulte="{{quiz.dificulte}}"
+                  data-time="{{quiz.temps}}"
+                  data-score="{{quiz.score}}"
+                  data-matiere="{{quiz.matierequiz}}"
+              
+              ></a>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Quiz</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body" id="modal-body-confirm">
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annulé</button>
+                        <button type="button" class="btn btn-success" id="star" href="#">Continuer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+          </div>
+      </div>
+      {%endif%}
+        {%endfor%}
+    </div>
+    {%endif%}
+</section>
+
+<div class="modal  consignes" id="e" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content ">
+      <div class="modal-header ">
+        <h5 class="modal-title titre" id="exampleModalLabel">Consigne</h5>
+        <!-- <i class='bx bx-x-circle'></i> -->
+        <button type="button" class="bx bx-x" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-confirm">
+          <div class="consigne">
+              <ul>
+                  <li><i class='bx bxs-check-circle'></i> Chaque Quiz est composé d'environ 15 à 20 questions.</li>
+                  <li><i class='bx bxs-check-circle'></i> Vous gagnez 1 point pour chaque réponse correcte, vous perdez pour une fausse réponse également pour les questions sans réponse. </li>  
+                  <li><i class='bx bxs-check-circle'></i> Vous n'êtes pas obligé de répondre toutes les questions.</li>
+                  <li><i class='bx bxs-check-circle'></i> Prenez le temps de lire attentivement  les questions avant de répondre.</li> 
+                  <li><i class='bx bxs-check-circle'></i> Prenez le temps également de lire les détails du  quiz avant de commencer.</li>                   
+              </ul>
+          </div>  
+          <div class="image">
+              <img src="/static/assets/img/consigne.png">
+
+          </div>     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">J'ai compris!</button>
+        <!-- <a type="button" class="btn btn-success" id=star href="">Oui</a> -->
+      </div>
+    </div>
+  </div>
+</div> 
+
+  
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}
+
+{% block scripts %}
+   <script src="{%  static 'assets/js/mainQuiz.js'    %}"></script>
+{%  endblock %}

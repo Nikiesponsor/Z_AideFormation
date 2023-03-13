@@ -1,0 +1,129 @@
+{% extends 'base.html'  %}
+{% load static %}
+{%  block content  %}
+{% include 'nav.html' %}
+{% if messages   %}
+{%  for message in messages  %}
+    {%  if message.tags == 'success'   %}
+       <script >
+             swal({
+                title:"{{message}}",
+                text:"Bienvenue sur Z_Aide.",
+                icon:"success",
+                timer: 4000,
+             })      
+       </script>
+    {% else   %}
+        <script >
+            swal({
+              title:"{{message}}",
+              text:"",
+              icon:"error",
+            })      
+        </script>
+    {%endif%}                       
+{%endfor%}
+{% endif %} 
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bxs-objects-horizontal-left"></i>
+            </div>        
+            <p>Les Niveaus & Quiz du jour </p>
+        </div>
+        <p>Sélectionnez le niveau de votre choix ou tester vos compétences dans le  Z_help-day.</p>
+        <p class="path mt-2">
+            <a href="{% url 'connex:home' %}">Acceuil</a>
+            <i class="bx bxs-chevron-right"></i>
+            <a href="">Niveaux & Quizs du jour</a>
+        </p>
+    </div>
+</section>
+{% if user.is_authenticated %}
+<div class="container">
+</div>
+{%endif%}
+
+<section class="niveau ">
+  <div class="level">
+    <div class="section-cards A">
+        <div class="img">
+            <img src="/static/assets/img/niveauz.png" class="img-fluid" ></img>
+        </div>
+        <div class="detils">
+            <div class="icon">
+                <i class="bx bxs-dashboard"></i>
+            </div>
+            {% if user.is_authenticated %}
+            <a href="{% url 'Quiz:quiz'  %}" class="link">
+                <h3>Z_help-day</h3>
+            </a>
+            {% else %}
+            <a href="" class="link" data-bs-toggle="modal" data-bs-target="#e" >
+                <h3>Z_help-day</h3>
+            </a>
+            {%endif%}
+
+        </div>
+    </div>
+    {%for niveau in niveaus  %}
+      <div class="section-cards A">
+          <div class="img">
+              <img src="/static/assets/img/niveauz.png" class="img-fluid" ></img>
+          </div>
+          <div class="detils">
+              <div class="icon">
+                  <i class="bx bxs-dashboard"></i>
+              </div>
+              <a href="{% url 'programme:matiere'  int_niveau=niveau.pk  %}" class="link">
+                  <h3>{{niveau.Nom_niveau}}</h3>
+              </a>
+          </div>
+      </div>
+    {%endfor%}
+  </div>
+</section>
+<div class="modal fade connex" id="e" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <h5 class="modal-title text-black" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modal-body-confirm">
+            <div class="group">
+                <h1> Z_Aide </h1>
+                <p>Rejoigner la communauté Z_Aide</p>
+                <ul>
+                    <li><img src="/static/assets/img/Checklist_Monochromatic (1).png"></li>
+                    <li><img src="/static/assets/img/Checklist_Monochromatic (1).png"></li>
+                    <li><img src="/static/assets/img/Checklist_Monochromatic (1).png"></li>
+                </ul>
+            </div>
+            <div class="present">
+                <a href="{%  url 'connex:register'  %}" class="inscription">Inscription <i class='bx bx-right-arrow-alt'></i></a>
+                <p>Inscrivez pour  acceder aux Quizs</p>
+                <span>Déja un compte? <a href="{%  url 'connex:log'  %}">Connexion</a></span>
+                
+            </div>         
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+          <a type="button" class="btn btn-success" id=star href="">Oui</a>
+        </div> -->
+      </div>
+    </div>
+</div> 
+<div id="preloader"></div>
+
+
+{% include 'footer.html' %}
+{% endblock  %}
+{% block scripts %}
+{% if user.is_authenticated %}
+<script src="{%  static 'assets/js/verifactionQuizjour.js' %}"></script> 
+{% endif%}
+          
+{%  endblock %}
+

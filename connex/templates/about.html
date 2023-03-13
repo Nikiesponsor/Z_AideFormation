@@ -1,0 +1,80 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bxs-category-alt"></i>
+            </div>        
+            <p> A propos de Nous</p>
+        </div>
+        <p></p>
+        <p class="path">
+            <a href="{% url 'connex:home' %}">Acceuil</a>
+            <i class="bx bxs-chevron-right"></i>
+            <a href="">A propos de Nous</a>
+          </p>  
+    </div>
+</section>
+<section id="about" class="about">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <h2>A propos de nous</h2>
+    </div>
+    <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
+      <div class="col-lg-5" style="background: url(/static/assets/img/niveaubg.png);">
+        <div class="about-img">
+          <img src="/static/assets/img/niveau.png" class="img-fluid" alt="">
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <h3 class="pt-0 pt-lg-5"><span class="fw-bold" style="color: #e96b56;">Aider</span> des milliers de candidats à acroître leur chance de réussite aux concours directs.</h3>
+        <!-- Tabs -->
+        <ul class="nav nav-pills mb-3">
+          <li><a class="nav-link active fw-bold" data-bs-toggle="pill" href="#tab1">Présentation</a></li>
+          <li><a class="nav-link fw-bold" data-bs-toggle="pill" href="#tab2">Notre mission</a></li>
+        </ul><!-- End Tabs -->
+        <!-- Tab Content -->
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="tab1">
+            <!-- <p class="fst-italic">Z_aide est une Plateforme de formation sur les concours directs de la fonction publique.</p> -->
+            <div class="d-flex align-items-center mt-4">
+              <i class="bi bi-check2"></i>
+              <h4><i class="bx bxs-check-circle" ></i>Z_Aide c'est une équipe de professionnels dans ce domaine</h4>
+            </div>
+            <p>Soucieux de permettre aux candidats d'accroître leurs chances de réussite aux concours directs de la fonction publice, Z Aide vous offre des services de qualité pour améliorer votre niveau.</p>
+            <div class="d-flex align-items-center mt-4">
+              <i class="bi bi-check2"></i>
+              <h4><i class="bx bxs-check-circle" ></i>Notre atouts</h4>
+            </div>
+            <p>À travers nos  Quizs <b>Z_help-day</b> Z Aide vous accompagnent tout le long de votre parcours afin de vous permettre d'être tout le temps à jour sur les sujets d'actualités, de cultures générales etc.<br/>
+            </p>
+            <div class="d-flex align-items-center mt-4">
+              <i class="bi bi-check2"></i>
+              <h4><i class="bx bxs-check-circle" ></i>Notre expérience</h4>
+            </div>
+            <p>Pour réussir aux concours il faut avant tout un <b>très gros effort</b> mais aussi un peu de chance.<br/>
+              Gardez sa <b>motivation</b> pendant le parcourt.<br/>
+              <b>Soyer organiser</b> ,alterner temps de travail et les phases de détente.<br/>
+              <b>Informez-vous au maximum</b> une chose est certaine : un candidat averti en vaut deux. Alors informez-vous sur le concours que vous avez choisi de passer !.<br/>
+               <b>Soyez curieux !</b>
+            </p>
+          </div><!-- End Tab 1 Content -->
+          <div class="tab-pane fade show" id="tab2">
+            <p class="fst-italic">
+              Le concept « les TIC au service du développement » fait référence à l'utilisation des TIC à des fins de développement socioéconomique. 
+              Dans cette perspective, il vise à encourager l’intégration de ces outils dans les différentes activités humaines, 
+              qu’il s’agisse de l’introduction de l’informatique dans les entreprises, dans les secteurs de l'éducation, de la santé ou qu’il s’agisse des grands projets innovants de développement tels que l’administration électronique, l’aménagement numérique du territoire, etc. En raison de l'importance croissante prise par l'information dans tous les types d’activités, les TIC s'affirment désormais, dans les pays développés et émergents, 
+              comme des outils d’aide à la formalisation des stratégies de développement (à l’échelle nationale comme à l’échelle locale).
+              C est pourquoi Chez Z_Aide on s est donné pour mission de faire usage des Technologies de l’information et de la communication (TIC) pour aider les milliersd personnes à atteindre leurs objectifs.                  
+            </p>
+          </div><!-- End Tab 3 Content -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}

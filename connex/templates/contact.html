@@ -1,0 +1,122 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5">
+  <div class="second">
+      <div class="present">
+          <div class="icon">
+              <i class="bx bxs-phone"></i>
+          </div>        
+          <p>Nous Contactez</p>
+      </div>
+      <p></p>
+      <p class="path">
+          <a href="{% url 'connex:home' %}">Acceuil</a>
+          <i class="bx bxs-chevron-right"></i>
+          <a href="">Nous Contactez</a>
+        </p>  
+  </div>
+</section>
+<div class="section-header">
+  <h2>Nous contacter</h2>
+</div>
+{% if nom %}
+<div class="favcheck">
+  <div class="fav">
+    <div class="icon">
+      <i class="bx bx-mail-send"  ></i>
+    </div>
+    <h5>Votre message à été envoyé avec success</h5>
+    <p>Merci de bien vouloir patienter</p>
+  </div>
+</div> 
+{%else%}
+<section id="contact" class="contact ">
+  <div class="container">
+    <div class="row gy-5 gx-lg-5">
+      <div class="col-lg-4">
+        <div class="info">
+          <h3>Z_aide</h3>
+          <p>
+            Nous serons ravi de vous ecoutez.
+            Cela dans le soucis de nous améliorer continuellement afin de vous satisfaire. 
+            Vous pouvez egalement nous contacter par telephone ou par mail.
+          </p>
+          <div class="info-item d-flex">
+            <i class="bx bx-location flex-shrink-0"></i>
+            <!-- <div>
+              <h4>Localisation:</h4>
+              <p>Pour plus tard</p>
+            </div> -->
+          </div><!-- End Info Item -->
+          <div class="info-item d-flex">
+            <i class="bx bxs-envelope flex-shrink-0"></i>
+            <div>
+              <h4>Email:</h4>
+              <p>zaideelearning@gmail.com</p>
+            </div>
+          </div><!-- End Info Item -->
+          <div class="info-item d-flex">
+            <i class="bx bxs-phone flex-shrink-0"></i>
+            <div>
+              <h4>Téléphone:</h4>
+              <p>(+226) 67-39-35-46</p>
+              <p>(+226) 53-85-75-43</p>
+              <p>(+226) 03-04-74-89</p>
+            </div>
+          </div><!-- End Info Item -->
+        </div>
+      </div>
+      {% if user.is_authenticated %}
+      <div class="col-lg-8">
+        <form action="" method="POST"  class="php-email-form">
+           {%csrf_token%} 
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="form-control fw-bold" id="name" placeholder="Votre Nom" value={{request.user.last_name}}  required>
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+              <input type="email" class="form-control fw-bold" name="email" id="email" placeholder="Votre  Email" value={{request.user.email}}  required>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <input type="text" class="form-control fw-bold" name="subject" id="subject" placeholder="Objet" required>
+          </div>
+          <div class="form-group mt-3">
+            <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+          </div>
+          <div class="text-center"><button type="submit">Envoyer</button></div>
+        </form>
+      </div><!-- End Contact Form -->
+      {% else%}
+      <div class="col-lg-8">
+        <form action="" method="POST"  class="php-email-form">
+           {%csrf_token%} 
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="form-control fw-bold" id="name" placeholder="Votre Nom"  required>
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+              <input type="email" class="form-control fw-bold" name="email" id="email" placeholder="Votre  Email"  required>
+            </div>
+          </div>
+          <div class="form-group mt-3">
+            <input type="text" class="form-control fw-bold" name="subject" id="subject" placeholder="Objet" required>
+          </div>
+          <div class="form-group mt-3">
+            <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+          </div>
+          <div class="text-center"><button type="submit">Envoyer</button></div>
+        </form>
+      </div><!-- End Contact Form -->
+      {%endif%}
+
+    </div>
+  </div>
+</section><!-- End Contact Section -->
+{%endif%}
+
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}

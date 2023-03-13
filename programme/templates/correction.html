@@ -1,0 +1,106 @@
+{% extends 'base.html'  %}
+{% load static %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="Question mt-5">
+    <div class="section-questions mt-5">
+        <div class="header">
+            <div class="present">
+                <h5> Quiz numéro : <b>{{quiz.numeroQuiz}}</b>  </h5>
+                <!-- <h5>Matière : <b>{{quiz.matierequiz}}</b></h5>
+                <h5> Niveau : <b>{{quiz.dificulte}}</b>  </h5>
+                <h5> nombre de questioon : <b>{{quiz.nombreDequestion}}</b>    </h5> 
+                <h5> Total de point pour valider le test : <b>{{quiz.score}}%</b>   </h5> -->
+            </div>
+            <div class="time">
+                <!-- <h5>TEMPS</h5>
+                <p id="timer "></p> -->
+            </div>
+        </div>
+        <div class="body">
+            <h3>{{quiz.matierequiz}}</h3>
+            <div class="score-box container" id="">
+                    {% if test == True %}
+                        <div class="win-lose A  mb-2">
+                            <div class="icon">
+                                <i class="bx bxs-trophy"></i>
+                            </div>
+                            <div class="present">
+                                <p><b>Felicitation vous avez reussi le test </b></p>
+                                <p><b>votre score au test est</b> <h5>{{score}}</h5> </p>
+                            </div>
+                            <div class="image">
+                                <img src="/static/assets/img/cup.png">
+                            </div>
+                        </div>
+                     {%else%}
+                        <div class="win-lose B mb-2">
+                            <div class="icon">
+                                <i class="bx bx-window-close"></i>
+                            </div>
+                            <div class="present">
+                                <p><b> Desolé Vous avez échoué </b> </p>
+                                <p><b>votre score au test est</b> <h4>{{score}}</h4> </p>                           
+                            </div>
+                            <div class="image">
+                                <img src="">
+                            </div>
+                        </div>
+
+                     {%endif%}
+            </div>
+            <div class="resultbox" id="">
+                {% for q,r in resultat.items  %} 
+                <div class="cardResult h5 mb-4">                 
+                    <div class="question"> 
+                        <div class="number me-2">
+                            <p>{{forloop.counter}}</p>
+                        </div>
+                        <div  class="quiz">
+                            <p><b>Question: </b> {{q|safe}}</p>
+                        </div>
+                    </div>             
+                    {% if r.reponse_correct == r.reponseselect %}
+                    <div class="BonneReponse"> <p> <i class="bx bx-check-circle text-success"> </i>  Trouvé: <b> {{r.reponseselect|safe}} </b></p> </div>                                 
+                    {% else%}   
+                    <div class="RepC">  <p> <i class="bx bx-check-circle text-success "> </i>  Reponse correcte : <b> {{r.reponse_correct|safe}}  </b> </p> </div>  
+                    <div class="VotreR"> <p> <i class="bx bx-x-circle text-danger"> </i> Votre réponse : <b>{{r.reponseselect|safe}}</b> </p></div>                    
+                    {%endif%}  
+                </div>                       
+                {% endfor %}                                       
+            </div>           
+        </div>
+        <div class="datails container mb-2">
+            <div class="card A">
+                <div class="icon o">
+                    <i class="bx bx-news"></i>
+                </div>
+                <div class="present">
+                    <p><a href="{%  url 'programme:resultcorection' int_quiz=quiz.pk %}" > correction détaillée </a></p>
+                </div>
+                <div class="icon A">                    
+                    <a href="{%  url 'programme:resultcorection' int_quiz=quiz.pk %}" > <i class="bx bx-chevron-right"></i> </a>
+                </div>
+            </div>
+            <div class="card B">
+                <div class="icon o ">
+                    <i class="bx bx-stats"></i>
+                </div>
+                <div class="present">
+                    <p><a href="{%  url 'programme:quizresulte' %}" > Vos resultats </a> </p>
+                </div>
+                <div class="icon B">
+                    
+                    <a href="{%  url 'programme:quizresulte' %}" > <i class="bx bx-chevron-right"></i> </a>
+                </div>
+            </div>
+        </div>      
+    </div>
+</section>
+ 
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}
+
+ 

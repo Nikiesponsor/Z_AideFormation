@@ -1,0 +1,36 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="info mt-5">
+    <div class="section-header mt-3">
+        <h1>Informations</h1>
+    </div>
+    {% for inf in infos  %}
+    <div class="info-div"  style="margin-bottom: 1rem;">
+        <div  class="date">                 
+             <span class="time"><i class="bx bxs-time-five" ></i> {{inf.date}}</span> 
+             <span class="source"> Source: MFPT</span>
+        </div>
+        <div class="body" style="color: rgb(70, 69, 69);font-weight: bold;">
+            <p >
+                {{inf.body|safe}}
+            </p>
+        </div>
+        <div class="footer">
+            <ul class="link">
+                {% if user.is_authenticated %}
+                <li> <a href="{{inf.pdf.url}}"  download="{{inf.pdf.url}}" class="pdf"><span>PDF</span><i class="bx bxs-download"></i>  </a> </li>
+                <li> <a href="{% url 'comment:comment' int_inf=inf.pk  %}" class="com"><span>commentaires({{ inf.info.count }})</span> </a> </li>
+                {%else%}
+                <li> <a href="{{inf.pdf.url}}"  download="{{inf.pdf.url}}" class="pdf"><span>PDF</span><i class="bx bxl-facebook-circle"></i>  </a> </li>
+                {%endif%}
+
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% include 'footer.html' %}
+{% endblock  %}

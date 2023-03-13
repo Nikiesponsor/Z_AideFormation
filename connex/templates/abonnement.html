@@ -1,0 +1,101 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bxs-category-alt"></i>
+            </div>        
+            <p>Plans d'adhesion chez Z_aide</p>
+        </div>
+        <p>Abonnez vous! pour profitez de nos meilleures contenue! <br/> Par defaut votre plan d'adhesion sera FREE apres inscription </p>
+    </div>
+</section>
+
+<section class="pricings">
+    {% if messages   %}
+    {%  for message in messages  %}
+        {%  if message.tags == 'success'   %}
+           <script >
+                 swal({
+                    title:"{{message}}",
+                    text:"",
+                    icon:"success",
+                 })      
+           </script>
+        {% else   %}
+            <script >
+                swal({
+                  title:"{{message}}",
+                  text:"",
+                  icon:"error",
+                })      
+            </script>
+        {%endif%}                       
+  {%endfor%}
+  {% endif %} 
+    <div class="pricing-section">
+        <div class="section-pricing C">
+            <h3>FREE</h3>
+            <div class="price"> <span>0</span> <sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-free.png">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day(limité).</b>.</li>
+                <li class="na"><i class="bx bx-check"></i><b>Quizs  Niveau</b>.</li>
+                <li class="na"><i class="bx bx-check"></i><b>Quizs de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+            </ul>
+            <!-- <a href="" class="btn-buy" >Achetez</a> -->
+        </div>
+        <div class="section-pricing D">
+            <h3>BASIC</h3>
+            <div class="price"> 1000 <sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-starter.png">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Quiz du jour.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz général de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz Matière/Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 30 jours</b>.</li>
+            </ul>
+            <a href="{%   url 'connex:register' %}" class="btn-buy" >Achetez</a>
+        </div> 
+        <div class="section-pricing A">
+            <span class="featured">Z_aide</span>
+            <h3>MEDIUM</h3>
+            <div class="price">2000<sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-business.png">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Quiz du jour.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz général de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz Matière/Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 3 Mois</b>.</li>
+            </ul>
+            <a href="{%   url 'connex:register' %}" class="btn-buy" >Achetez</a>
+        </div>
+        <div class="section-pricing B">
+            <span class="featured">Z_aide</span>
+            <h3>PRO</h3>
+            <div class="price">5000<sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-ultimate.png">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Quiz du jour.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz général de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz Matière/Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 5 mois</b>.</li>
+            </ul>
+            <a href="{%   url 'connex:register' %}" class="btn-buy" >Achetez</a>
+        </div>
+    </div>
+</section>
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}

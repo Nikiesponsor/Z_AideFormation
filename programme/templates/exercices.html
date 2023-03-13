@@ -1,0 +1,61 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bxs-blanket"></i>
+            </div>        
+            <p>exercices & Corrigés</p>
+        </div>
+        <p></p>
+        <p class="path">
+            <a href="{% url 'connex:home' %}">Acceuil</a>
+            <i class="bx bxs-chevron-right"></i>
+            <a href="{% url 'programme:matiere' int_niveau=lecon.lecon_niveau.pk %}">{{lecon.lecon_niveau}}</a>
+            <i class="bx bxs-chevron-right"></i>
+            <a href="{% url 'programme:lecon' int_niveau=lecon.lecon_niveau.pk int_matiere=lecon.lecon_matiere.pk %}">{{lecon.lecon_matiere}}</a>
+            <i class="bx bxs-chevron-right"></i>
+            <a href="{% url 'programme:details' int_niveau=lecon.lecon_niveau.pk int_matiere=lecon.lecon_matiere.pk int_lecon=lecon.pk %}">{{lecon}}</a>
+            <i class="bx bxs-chevron-right"></i>
+            <a href="">Exercices</a>
+        </p>
+    </div>
+</section>
+<div class="section-header">
+    <h2>Préparez-vous</h2>
+</div>
+{% if exos %}
+<section class="Quiz-section">
+
+    {% for exo in exos  %}
+    <div class="Quiz">
+        <div class="present">
+            <span class="featured">Z_aide</span>
+            <h4> {{exo.Nom_Exercices}}  </h4>
+            <!-- <p>Exercxer V</p> -->
+            <div class="link">
+                <a href="{{ exo.exercices.url }}" download="{{ exo.exercices.url }}"><i class="bx bxs-cloud-download fw-bold" ></i> <span>Enoncé & Correction</span></a>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</section>
+
+{%else%}
+<div class="favcheck">
+    <div class="fav">
+      <div class="icon">
+        <!-- <img src="/static/assets/img/alert.png" class="img-fluid" > -->
+        <i class="bx bxs-error"  ></i>
+      </div>
+      <h5>Exercices pas disponible</h5>
+      <p>On vous informera de la disponibilité de cette section.</p>
+    </div>
+</div>
+{%endif%}
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}

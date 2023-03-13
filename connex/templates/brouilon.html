@@ -1,0 +1,566 @@
+<section class="login mt-5">
+    {% if messages   %}
+    {%  for message in messages  %}            
+           <script>
+                 swal({
+                    title:"connexion a échoué",
+                    text:"{{message}}",
+                    icon:"error"
+                 })      
+           </script>                           
+    {%endfor%} 
+{% endif %} 
+    <div class="section-log">
+        <div class="form login">
+            <span class="title">Login</span>
+            <form method="POST" action="">
+                {%csrf_token%}
+                <div class="section-input">
+                    {{form.email}}
+                    <i class="bx bx-user icon"></i>
+                </div>
+
+                {%  if form.email.errors  %}
+                {%  for error in form.email.errors %}
+                   <div><small class="text-danger mb-1"> {{error}} </small></div>
+                {% endfor%}
+                {%endif%} 
+
+                <div class="section-input">
+                    {{form.first_name}}
+                    <i class="bx bx-user icon"></i>
+                </div>
+
+                <div class="section-input">
+                    {{form.last_name}}
+                    <i class="bx bx-user icon"></i>
+                </div>
+
+                <div class="section-input">
+                    {{form.telphone}}
+                    <i class="bx bx-user icon"></i>
+                </div>
+                
+                <div class="section-input">
+                    {{form.password1}}
+                    <i class="bx bx-key icon"></i>
+                    <i class="bx bxs-show vision"></i>
+                </div>
+                <div class="section-input">
+                    {{form.password2}}
+                    <i class="bx bx-key icon"></i>
+                    <i class="bx bxs-show vision"></i>
+                </div>
+                <div class="checkbox">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="check">
+                        <label for="check" class="text">Remenber me</label>
+                    </div> 
+                    <a href="#" class="text">Mots de passe oublié</a>
+                </div>
+                <div class="section-input submit-butom">
+                    <input type="submit" value="Connexion">
+                </div>
+            </form>
+            <div class="register">
+                <span>Vous débuter sur Z_aide? <a href="#"> S'inscrire</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- orientation -->
+
+
+<section class="orientation mt-5">
+    <div class="container mt-5 ">
+        <ul class="section-cube">
+            <li class="cube">
+                <a class="icon active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+                    <i class="bx bxs-category-alt color-cyan"></i>
+                    <h5>Lorem..</h5>
+                </a>
+            </li>
+            <li class="cube">
+                <a class="icon" data-bs-toggle="tab" data-bs-target="#tab-Z">
+                    <i class="bx bxs-category-alt color-indigo"></i>
+                    <h5>Lorem..</h5>
+                </a>
+            </li>
+            <li class="cube">
+                <a class="icon" data-bs-toggle="tab" data-bs-target="#tab-3">
+                    <i class="bx bxs-category-alt"></i>
+                    <h5>Lorem..</h5>
+                </a>
+            </li>
+            <li class="cube">
+                <a class="icon" data-bs-toggle="tab" data-bs-target="#tab-4">
+                    <i class="bx bxs-category-alt"></i>
+                    <h5>Lorem..</h5>
+                </a>
+            </li>
+            <li class="cube">
+                <a class="icon" data-bs-toggle="tab" data-bs-target="#tab-5">
+                    <i class="bx bxs-category-alt"></i>
+                    <h5>Lorem..</h5>
+                </a>
+            </li>
+            <li class="cube">
+                <a class="icon" data-bs-toggle="tab" data-bs-target="#tab-6">
+                    <i class="bx bxs-category-alt"></i>
+                    <h5>Lorem..</h5>
+                </a>
+            </li>
+        </ul>
+        <div class="present">
+            <div class="tabe active show" id="tab-1">
+                <div class="contenu">
+                    <div class="order-2 order-lg-1">
+                        <h3>Lorem, ipsum.</h3>
+                        <p>Lorem..</p>
+                        <ul>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                        </ul>
+                    </div>
+                    <div class="order-1 order-lg-2">
+                        <img src="/static/assets/img/comments-1.jpg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="tabe" id="tab-2">
+                <div class="contenu">
+                    <div class="order-2 order-lg-1">
+                        <h3>Lorem, ipsum.</h3>
+                        <p>Lorem..</p>
+                        <ul>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                        </ul>
+                    </div>
+                    <div class="order-1 order-lg-2">
+                        <img src="/static/assets/img/comments-1.jpg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="tabe" id="tab-3">
+                <div class="contenu">
+                    <div class="order-2 order-lg-1">
+                        <h3>Lorem, ipsum.</h3>
+                        <p>Lorem..</p>
+                        <ul>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                        </ul>
+                    </div>
+                    <div class="order-1 order-lg-2">
+                        <img src="/static/assets/img/comments-1.jpg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="tabe" id="tab-4">
+                <div class="contenu">
+                    <div class="order-2 order-lg-1">
+                        <h3>Lorem, ipsum.</h3>
+                        <p>Lorem..</p>
+                        <ul>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                        </ul>
+                    </div>
+                    <div class="order-1 order-lg-2">
+                        <img src="/static/assets/img/comments-1.jpg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="tabe" id="tab-5">
+                <div class="contenu">
+                    <div class="order-2 order-lg-1">
+                        <h3>Lorem, ipsum.</h3>
+                        <p>Lorem..</p>
+                        <ul>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                        </ul>
+                    </div>
+                    <div class="order-1 order-lg-2">
+                        <img src="/static/assets/img/comments-1.jpg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="tabe" id="tab-6">
+                <div class="contenu">
+                    <div class="order-2 order-lg-1">
+                        <h3>Lorem, ipsum.</h3>
+                        <p>Lorem..</p>
+                        <ul>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                            <li><i class="bx bxs-category-alt"></i>Lorem, ipsum dolor.</li>
+                        </ul>
+                    </div>
+                    <div class="order-1 order-lg-2">
+                        <img src="/static/assets/img/comments-1.jpg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<!-- contact -->
+
+
+
+
+
+<section id="contact" class="contact mt-5">
+    <div class="container mt-5">
+      <div class="row gy-5 gx-lg-5">
+        <div class="col-lg-4">
+          <div class="info">
+            <h3>Get in touch</h3>
+            <p>Et id eius voluptates atque nihil voluptatem enim in tempore minima sit ad mollitia commodi minus.</p>
+            <div class="info-item d-flex">
+              <i class="bx bx-location-plus flex-shrink-0"></i>
+              <div>
+                <h4>Location:</h4>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
+            </div><!-- End Info Item -->
+            <div class="info-item d-flex">
+              <i class="bx bxs-envelope flex-shrink-0"></i>
+              <div>
+                <h4>Email:</h4>
+                <p>info@example.com</p>
+              </div>
+            </div><!-- End Info Item -->
+            <div class="info-item d-flex">
+              <i class="bx bxs-phone flex-shrink-0"></i>
+              <div>
+                <h4>Call:</h4>
+                <p>+1 5589 55488 55</p>
+              </div>
+            </div><!-- End Info Item -->
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <form action="" method="post"  class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" placeholder="Message" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+          </form>
+        </div><!-- End Contact Form -->
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="services">
+
+    <div class="section-header">
+        <h2>Nos Services</h2>
+        <p>Z_Aide met à votre disposition:</p>
+  
+    </div>   
+    <div class="services_box">
+        <div class="service_box blue">
+            <i class="bx bx-book-alt icon  "></i>
+            <h3>Cours</h3>
+            <p>Des cours de qualité pour permetre de renforcé vos capacités </p>
+            {% if user.is_authenticated %}
+            <a class="read_mores">start<i class="bx bx-right-arrow-alt "></i></a>
+            {%else%}
+            <a class="read_mores">inscription <i class="bx bx-right-arrow-alt "></i></a>
+            {%endif%}
+        </div> 
+        <div class="service_box orange">
+            <i class="bx bx-book-alt icon"></i>
+            <h3>Quiz du jour</h3>
+            <p>Chaque jour nous mettons a votre disposition un questionnaire général<b>Actualités,Histoire,maths...</b></p>
+            {% if user.is_authenticated %}
+            <a class="read_mores">start<i class="bx bx-right-arrow-alt "></i></a>
+            {%else%}
+            <a class="read_mores">inscription <i class="bx bx-right-arrow-alt "></i></a>
+            {%endif%}
+        </div> 
+        <div class="service_box green">
+            <i class="bx bx-book-alt icon"></i>
+            <h3>Quiz général de Niveau</h3>
+            <p>Le Quiz général de niveau est </p>
+            {% if user.is_authenticated %}
+            <a class="read_mores">start<i class="bx bx-right-arrow-alt "></i></a>
+            {%else%}
+            <a class="read_mores">inscription <i class="bx bx-right-arrow-alt "></i></a>
+            {%endif%}
+        </div> 
+        <div class="service_box red">
+            <i class="bx bx-book-alt icon"></i>
+            <h3>Quiz Matiere/Module  </h3>
+            <p><b>COURS</b> consectetur adipisicing elit. Amet!</p>
+            {% if user.is_authenticated %}
+            <a class="read_mores">start<i class="bx bx-right-arrow-alt "></i></a>
+            {%else%}
+            <a class="read_mores">inscription <i class="bx bx-right-arrow-alt "></i></a>
+            {%endif%}           
+        </div>
+        <div class="service_box purple ">
+            <i class="bx bx-book-alt icon"></i>
+            <h3>Exercices & corrigés</h3>
+            <p> <b>Z_Aide</b> c est aussi des exercices & corrigés par matière/module </p>
+            {% if user.is_authenticated %}
+            <a class="read_mores">start<i class="bx bx-right-arrow-alt "></i></a>
+            {%else%}
+            <a class="read_mores">inscription <i class="bx bx-right-arrow-alt "></i></a>
+            {%endif%}
+        </div>
+    </div>        
+</section>
+
+
+
+
+
+
+<section class="contacts container">
+    <div class="contact-cards "> 
+        <div class="card1 A">
+            <div class="headerscard">
+                <h1>nikiesponsors</h1>
+                <p>Lorem ipsum dolor sit amet.
+                </p>
+            </div>
+            <div class="body">
+                <div class="icon">
+                    <div>
+                        <i class="bx bx-location-plus" ></i>
+                    </div>
+                    <div>
+                        <h4>Location:</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div>
+                        <i class="bx bxs-envelope" ></i>
+                    </div>
+                    <div>
+                        <h4>Email:</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+                <div class="icon fin">
+                    <div>
+                        <i class="bx bxs-phone" ></i>
+                    </div>
+                    <div>
+                        <h4>Téléphone:</h4>
+                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card2 B">
+            <form>
+                <div class="section-input A">
+                    <input type="text" placeholder="Votre nome" value="philippe" id="nom">
+                </div>
+                <div class="section-input B">
+                    <input type="email" placeholder="Votre adresse mail" value="philippe" id="email">
+                </div>
+                <div class="section-input C ">
+                    <input type="text" placeholder="Objet" id="objet">
+                </div>
+                <div class="section-input D ">
+                    <textarea placeholder="messages"></textarea>
+                </div>
+            </form>
+            <div class="submit-form">
+                <input  type="submit" value="envoyer" >
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- indication -->
+
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Toggle bottom offcanvas</button>
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+    ...
+  </div>
+</div>
+
+<!-- bouton d indication -->
+
+<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">
+    Tooltip on top
+  </button>
+  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Tooltip on right">
+    Tooltip on right
+  </button>
+  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
+    Tooltip on bottom
+  </button>
+  <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Tooltip on left">
+    Tooltip on left
+  </button>
+
+
+
+
+
+
+
+
+
+
+
+
+  {% render_cookie_consent_banner %}
+<h1>Mon site</h1>
+<p>Bienvenue sur mon site !</p>
+<form method="post" action="{% url 'connex:set_cookie_consent' %}">
+    {% csrf_token %}
+    <button type="submit" name="cookie_consent" value="full">Accepter tous les cookies</button>
+    <button type="submit" name="cookie_consent" value="necessary">Accepter les cookies nécessaires seulement</button>
+</form>
+{% render_cookie_consent_js %}
+
+"Nous utilisons des cookies pour améliorer votre expérience de navigation sur notre application web. Les cookies sont de petits fichiers texte qui sont stockés sur votre appareil lorsque vous accédez à notre site web. Ils nous aident à fournir des fonctionnalités importantes telles que la personnalisation du contenu, l'analyse du trafic et l'amélioration de la convivialité de notre site web. En continuant à utiliser notre application web, vous consentez à notre utilisation des cookies."
+
+
+<script src="{%  static  'assets/sweatalert/js/sweetalert.min.js' %}"></script>
+<script src="{%  static  'assets/js/sweetalert.min.js'%}"></script>
+<script src="{%  static 'assets/sweetalert2-11.7.1/package/dist/sweetalert2.all.min.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://www.pythonanywhere.com/user/philippeconcours/
+
+
+
+Z_aide est une plateforme de formation au concours directs de la fonction publique au Burkina faso
+
+
+
+
+
+PAYDUNYA_ACCESS_TOKENS = {
+    'PAYDUNYA-MASTER-KEY': "IHwpclZ9-z1y8-ByWr-afCt-JIuI4B0xsD3h",
+    'PAYDUNYA-PRIVATE-KEY': "test_private_JH0Dz4oeBX7DbjmV0wB5IaUcwvz",
+    'PAYDUNYA-TOKEN': "VEQcy3C03S55DT8X04dN",
+    }
+    paydunya.debug = True
+    paydunya.api_keys = PAYDUNYA_ACCESS_TOKENS
+    # Configuration des informations de votre service/entreprise
+    infos = {
+    'name': "Z_aide", # Seul le nom est requis
+    'tagline': "Atteindre ses objectifs",
+    'website_url': "http://127.0.0.1:8000/",
+    'logo_url': "http://127.0.0.1:8000//static/assets/img/user1.png"
+    }
+    store = Store(**infos) 
+    store = paydunya.Store(name='Z_aide')
+    # L'ajout d'éléments à votre facture est très basique.
+    # Les paramètres attendus sont nom du produit, la quantité, le prix unitaire,
+    # le prix total et une description.
+    items = [
+    InvoiceItem(
+        name= str(checkplan),
+        quantity=1,
+        unit_price=prix,
+        total_price=prix,
+        description="Merci d'avoir souscrit au forfait"
+    ),
+    ]  
+    invoice = paydunya.Invoice(store)
+    invoice.add_items(items)
+    invoice.cancel_url = "http://127.0.0.1:8000/plan"    
+    invoice.return_url = "http://127.0.0.1:8000/check"
+    successful, response = invoice.create() 
+    # print("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",successful)
+    # print("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",response) 
+
+
+
+    if successful == True:  
+    link=response['response_text']
+    return HttpResponseRedirect(link)
+    else:
+    messages.error(request,'erreur veuillez recommencer')
+    return redirect('connex:plan')

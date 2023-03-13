@@ -1,0 +1,612 @@
+
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+<!-- --------------------------------------------- -->
+<!-- -------------------HERO------------------------ -->
+<section class="container_hero mt-5">
+    {% if messages   %}
+    {%  for message in messages  %}
+        {%  if message.tags == 'success'   %}
+           <script >
+                 swal({
+                    title:"{{message}}",
+                    text:"",
+                    icon:"success",
+                 })      
+           </script>
+        {% else   %}
+            <script >
+                swal({
+                  title:"{{message}}",
+                  text:"",
+                  icon:"error",
+                })      
+            </script>
+        {%endif%}                       
+  {%endfor%}
+  {% endif %} 
+    <div class="container_hero_home">
+        <div class="rigth mt-3">
+            <div class="hero_about mt-5">
+                <h1>Bienvenue sur <span style="color: #e96b56;" > Z_Aide</span><br> Plateforme de préparation de concours directs de <br> la fonction publique au Burkina Faso.</h1>
+                <h2>Nous vous offrons les ressources nécessaires <br>pour vous préparer correctement.</h2>
+            </div>
+            <div class="hero_butom">
+                {% if request.user.is_authenticated  %}
+                    <a href="{%  url 'programme:niveau' %}" class="btn-started">
+                        <span class="fw-bold">Commencer</span>
+                        <i class="bx bx-right-arrow-alt"></i> 
+                    </a>  
+                {%  else %}
+                    <a href="{%  url 'connex:register' %}" class="btn-started">
+                        <span class="fw-bold">inscription</span>
+                        <i class="bx bx-right-arrow-alt"></i> 
+                    </a>  
+                {%endif%}                
+            </div>           
+        </div>
+        <!-- <div class="left"> 
+            <img src="/static/assets/img/peaple.png">    
+        </div> -->
+    </div>
+</section>
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+      <div class="section-header">
+        <h2>A propos de nous</h2>
+      </div>
+      <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-5" style="background: url(/static/assets/img/niveaubg.png);">
+          <div class="about-img">
+            <img src="/static/assets/img/niveau.png" class="img-fluid" alt="">
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <h3 class="pt-0 pt-lg-5"><span class="fw-bold" style="color: #e96b56;">Aider</span> des milliers de candidats à acroître leur chance de réussite aux concours directs.</h3>
+          <!-- Tabs -->
+          <ul class="nav nav-pills mb-3">
+            <li><a class="nav-link active fw-bold" data-bs-toggle="pill" href="#tab1">Présentation</a></li>
+            <li><a class="nav-link fw-bold" data-bs-toggle="pill" href="#tab2">Notre mission</a></li>
+          </ul><!-- End Tabs -->
+          <!-- Tab Content -->
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab1">
+              <!-- <p class="fst-italic">Z_aide est une Plateforme de formation sur les concours directs de la fonction publique.</p> -->
+              <div class="d-flex align-items-center mt-4">
+                <i class="bi bi-check2"></i>
+                <h4><i class="bx bxs-check-circle" ></i>Z_Aide c'est une équipe de professionnels dans ce domaine</h4>
+              </div>
+              <p>Soucieux de permettre aux candidats d'accroître leurs chances de réussite aux concours directs de la fonction publice, Z Aide vous offre des services de qualité pour améliorer votre niveau.</p>
+              <div class="d-flex align-items-center mt-4">
+                <i class="bi bi-check2"></i>
+                <h4><i class="bx bxs-check-circle" ></i>Notre atouts</h4>
+              </div>
+              <p>À travers nos  Quizs <b>Z_help-day</b> Z Aide vous accompagnent tout le long de votre parcours afin de vous permettre d'être tout le temps à jour sur les sujets d'actualités, de cultures générales etc.<br/>
+              </p>
+              <div class="d-flex align-items-center mt-4">
+                <i class="bi bi-check2"></i>
+                <h4><i class="bx bxs-check-circle" ></i>Notre expérience</h4>
+              </div>
+              <p>Pour réussir aux concours il faut avant tout un <b>très gros effort</b> mais aussi un peu de chance.<br/>
+                Gardez sa <b>motivation</b> pendant le parcourt.<br/>
+                <b>Soyer organiser</b> ,alterner temps de travail et les phases de détente.<br/>
+                <b>Informez-vous au maximum</b> une chose est certaine : un candidat averti en vaut deux. Alors informez-vous sur le concours que vous avez choisi de passer !.<br/>
+                 <b>Soyez curieux !</b>
+              </p>
+            </div><!-- End Tab 1 Content -->
+            <div class="tab-pane fade show" id="tab2">
+              <p class="fst-italic">
+                Le concept « les TIC au service du développement » fait référence à l'utilisation des TIC à des fins de développement socioéconomique. 
+                Dans cette perspective, il vise à encourager l’intégration de ces outils dans les différentes activités humaines, 
+                qu’il s’agisse de l’introduction de l’informatique dans les entreprises, dans les secteurs de l'éducation, de la santé ou qu’il s’agisse des grands projets innovants de développement tels que l’administration électronique, l’aménagement numérique du territoire, etc. En raison de l'importance croissante prise par l'information dans tous les types d’activités, les TIC s'affirment désormais, dans les pays développés et émergents, 
+                comme des outils d’aide à la formalisation des stratégies de développement (à l’échelle nationale comme à l’échelle locale).
+                C est pourquoi Chez Z_Aide on s est donné pour mission de faire usage des Technologies de l’information et de la communication (TIC) pour aider les milliersd personnes à atteindre leurs objectifs.                  
+              </p>
+            </div><!-- End Tab 3 Content -->
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="section-header">
+        <h2>Nos Services</h2>
+        <p>Z_Aide met à votre disposition:</p> 
+    </div>   
+    <div class="services_box">
+        <div class="service_box blue">
+            <i class="bx bxs-blanket icon  "></i>
+            <h3>Cours</h3>
+            <p>Des cours de qualité pour vous aider à renforcer vos compétences..</p>
+            <a href="{%  url 'programme:niveau' %}" class="read_mores">Commencer <i class='bx bx-right-arrow-alt'></i></a>
+        </div> 
+        <div class="service_box orange">
+            <i class="bx bx-extension icon"></i>
+            <h3>Z_help-day</h3>
+            <p>Chaque jour nous mettons a votre disposition un ou plusieurs Quiz(s) sur de sujets d'actualités,histoire,maths...</p>
+            <a href="{%  url 'programme:niveau' %}" class="read_mores">Commencer <i class='bx bx-right-arrow-alt'></i></a>
+        </div> 
+        <div class="service_box green">
+            <i class="bx bxs-extension icon"></i>
+            <h3>Quiz de type niveau.</h3>
+            <p>Il est spécifique à un niveau donné</p>
+            <a href="{%  url 'programme:niveau' %}" class="read_mores">Commencer <i class='bx bx-right-arrow-alt'></i></a>
+        </div> 
+        <div class="service_box red">
+            <i class="bx bx-extension icon"></i>
+            <h3>Quizs de Module.</h3>
+            <p>Il s'agit de Quizs spécifiques à une matière ou d'une unité de formation.</p>
+            <a href="{%  url 'programme:niveau' %}" class="read_mores">Commencer <i class='bx bx-right-arrow-alt'></i></a>
+        </div> 
+        <div class="service_box purple ">
+            <i class="bx bx-book-alt icon"></i>
+            <h3>Exercices & corrigés</h3>
+            <p><b>Z_Aide</b> c est aussi des exercices & corrigés.</p>
+            <a href="{%  url 'programme:niveau' %}" class="read_mores">Commencer <i class='bx bx-right-arrow-alt'></i></a>
+        </div>
+    </div>        
+  </section>
+
+
+
+
+<section id="faq" class="faq">
+    <div class="container-fluid" data-aos="fade-up">
+    <div class="section-header">
+            <h2>Innovation</h2>
+            <p> </p>
+    </div>
+
+      <div class="row gy-4">
+        <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+          <div class="content px-xl-5">
+            <h3>La méthode novatrice Chez <strong>Z_Aide.</strong></h3>
+            <p>
+              A travers ces axes, vous serez en mesure de faire des progrès. 
+            </p>
+          </div>
+          <div class="accordion accordion-flush px-xl-5" id="faqlist">
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  Apprendre
+                </button>
+              </h3>
+              <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  Accéder  à de nombreux cours de qualité de niveaux BEPC,BAC et LICENCE.
+                  Ces cours constituent une synthèse détaillée qui vous permettra de vous ressourcer. 
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  S'entrainner
+                </button>
+              </h3>
+              <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  Entrainnez vous avec de nombreux exercices avec leurs corrigés
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  S'évaluer
+                </button>
+              </h3>
+              <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  Testez vos connaissances grâce aux differents quiz proposé sur la plateforme. 
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+              <h3 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  Evoluer
+                </button>
+              </h3>
+              <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                <div class="accordion-body">
+                  <i class="bi bi-question-circle question-icon"></i>
+                  grâce à vos résultats, vous pourrez suivre votre évolution dans chacun des types de questionnaires offerts sur la plateforme.
+                </div>
+              </div>
+            </div><!-- # Faq item-->
+          </div>
+        </div>
+       
+      </div>
+    </div>
+</section>
+<section id="features" class="features">
+    <div class="container" data-aos="fade-up">
+    <div class="section-header">
+            <h2>S'orienter</h2>
+            <p></p>
+    </div>
+      <ul class=" nav nav-tabs row gy-4 d-flex">
+        <li class="nav-item col-6 col-md-4 col-lg-2">
+          <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+            <i class="bx bxs-category-alt " style="color: cyan;"></i>
+            <h4>Niveaux & Z_help-day</h4>
+          </a>
+        </li>
+
+        <li class="nav-item col-6 col-md-4 col-lg-2">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
+            <i class="bx bx-extension color-indigo"></i>
+            <h4>Z_help-day</h4>
+          </a>
+        </li>
+
+        <li class="nav-item col-6 col-md-4 col-lg-2">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
+            <i class="bx bx-bar-chart-alt-2 " style="color: rgb(30, 190, 190);"></i>
+            <h4>Les Niveaux</h4>
+          </a>
+        </li>
+
+        <li class="nav-item col-6 col-md-4 col-lg-2">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
+            <i class="bx bxs-blanket " style="color: red;"></i>
+            <h4>Cours et exercices</h4>
+          </a>
+        </li>
+
+        <li class="nav-item col-6 col-md-4 col-lg-2">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-5">
+            <i class="bx bx-objects-vertical-bottom " style="color: blue;"></i>
+            <h4>Vos résultats</h4>
+          </a>
+        </li>
+
+        <li class="nav-item col-6 col-md-4 col-lg-2">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-6">
+            <i class="bx bxs-book-content " style="color: orange;"></i>
+            <h4>Corrections détaillées des Quizs</h4>
+          </a>
+        </li>
+
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active show" id="tab-1">
+          <div class="row gy-4">
+            <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+              <h3>Niveaux & Z_help-day</h3>
+              <ul>
+                <li><i class="bx bxs-category-alt"></i><b>Niveaux:</b> Il ya trois niveaux ( BEPC ,BAC et LICENCE ) chaque niveau est composé : <br/>
+                    <b>-Des  quizs de type niveau.</b> <br/>  
+                   <b>-Des cours et des exercices associées au cours.</b> 
+                </li>
+                <li><i class="bx bxs-category-alt"></i> <b>Z_help-day:</b>
+                    Chaque jour un ensemble de questionnaire est mise a la disposition des utilisateurs de Z_aide.<br/>
+                    Ces questionnaires ne  visent pas un niveau en particulier et sont composés  de  questions d'actualités,de culture générale,de spytcho technique etc.<br/>
+                    <b>Elles ont pour but d'améliorer votre  niveau  et de vous rendre compétitif.</b>
+                </li>              
+              </ul>
+
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+              <img src="/static/assets/img/niveaux.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-2">
+          <div class="row gy-4">
+            <div class="col-lg-8 order-2 order-lg-1">
+              <h3>Z_help-day</h3>
+              <p>
+                Chaque jour un ou plusieurs questionnaires sont mis a votre disposition afin de vous améliorez.
+                Ces questionnaires sont composés des questions divers<b>(Actualité,Mathematiques,cultures générale etc)</b>. 
+              </p>
+              <ul>
+                <li><i class="bx bxs-category-alt"></i> <b>Les Quiz du jour:</b>
+                    Chaque quiz est composé: <br/> 
+                    <!-- <b>D'un niveau : Difficile facile ou normal ( sauf pour les quiz du jour)</b> <br/> -->
+                    <b>D'un temps: Pour vous rendre compétitif </b><br/>
+                    <b>D'un score: Pour soit être gagnant du test ou perdant </b><br/>                   
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 text-center">
+              <img src="/static/assets/img/jour.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-3">
+          <div class="row gy-4">
+            <div class="col-lg-8 order-2 order-lg-1">
+              <h3>Les Niveaux</h3>
+              <p>
+                Il ya trois niveaux <b>BEPC ,BAC et LICENCE</b>
+              </p>
+              <ul>
+                <li><i class="bx bxs-category-alt"></i>
+                    <b>BEPC:</b> <br/>
+                    Il est composé:<br/>
+                    <b>-Quizs de type Niveau:</b> Ce sont des quizs de plusieurs matières combinés <br/>
+                    <b>-Quizs de matière:</b> Ce sont des quizs sur une matiere en particulier.<br/>                    
+                    <b>-Cours et exercices</b>                   
+                </li>
+                <li><i class="bx bxs-category-alt"></i> 
+                    <b>BAC:</b> <br/>
+                    Il est composé:<br/>
+                    <b>-Quizs de type Niveau:</b> Ce sont des quizs de plusieurs matières combinés.<br/> 
+                    <b>-Quizs de matière:</b> Ce sont des quizs sur une matiere en particulier.<br/>
+                    <b>-Cours et exercices</b>
+                </li>
+                <li><i class="bx bxs-category-alt"></i> 
+                    <b>LICENCE:</b> <br/>
+                    Il est composé:<br/>
+                    <b>-Quizs de type Niveau:</b> Il s'agit d'un combiné de questionnaire issue de différentes unité de formations.<br/> 
+                    <b>-Quizs dans une unites de formation:</b> Ce sont des quizs sur une unité de formation en particulier.<br/>
+                    <b>-Cours et exercices</b> 
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 text-center">
+              <img src="/static/assets/img/niveaux.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-4">
+          <div class="row gy-4">
+            <div class="col-lg-8 order-2 order-lg-1">
+              <h3>Cours et exercices</h3>
+              <p>
+                  Apprenez et entrainnez vous avec des contenus de qualité sur notre plateforme.
+              </p>
+              <ul>
+                <li><i class="bx bxs-category-alt"></i> <b>Aprrendre avec les  Cours:</b> Acceder rapidement aux cours pour vous ressourcer.</li>
+                <li><i class="bx bxs-category-alt"></i> <b>S'entrainnez avec des  exercices:</b> Acceder à de nombreux exercices et corrigées. </li>              
+              </ul>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 text-center">
+              <!-- <img src="/static/assets/img/niveau.png" alt="" class="img-fluid"> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-5">
+          <div class="row gy-4">
+            <div class="col-lg-8 order-2 order-lg-1">
+              <h3>Vos résultats</h3>
+              <p>
+                Pour chaque Quiz tenté vos résultats sont enregistrés afin de vous permettre de voir votre progression.
+              </p>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 text-center">
+              <img src="/static/assets/img/stat.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab-6">
+          <div class="row gy-4">
+            <div class="col-lg-8 order-2 order-lg-1">
+              <h3>Corrections détaillées des Quizs</h3>
+              <p>
+                La correction détaillée vous donne la possibilité de comprendre le choix de la bonne réponse a travers des indications.
+              </p>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 text-center">
+              <img src="/static/assets/img/correct.png" alt="" class="img-fluid">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+</section>
+<!-- --------------------------------------------- -->
+<!-- -------------------PRICINGS------------------------ -->
+<section class="pricings">
+    <div class="section-header">
+        <h2>Abonnement</h2>
+        <p>Abonnez-vous afin de bénéficier du meilleur contenu. </p>
+    </div>
+    <div class="pricing-section">
+        <div class="section-pricing C">
+            <h3>FREE</h3>
+            <div class="price"> <span>0</span> <sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-free.png" class="img-fluid" >
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day(limité).</b>.</li>
+                <li class="na"><i class="bx bx-check"></i><b>Quizs  Niveau</b>.</li>
+                <li class="na"><i class="bx bx-check"></i><b>Quizs de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+            </ul>
+            {% if request.user.is_authenticated %}
+            <!-- <a href="" class="btn-buy" ></a> -->
+            {%else%}
+            <a href="{%  url 'connex:register' %}" class="btn-buy" >S'inscrire</a>
+            {%endif%}
+        </div>
+        <div class="section-pricing D">
+            <h3>BASIC</h3>
+            <div class="price"> 1000 <sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-starter.png" class="img-fluid">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 30 jours</b>.</li>
+            </ul>
+            {% if request.user.is_authenticated %}
+            {% if plan == 'BASIC' %}
+            <a href="{% url 'connex:souscrib'%}?plan=BASIC" class="btn-buy" >Rénouveler</a>
+            {%else%}
+            <a href="{% url 'connex:souscrib'%}?plan=BASIC" class="btn-buy" >Acheter</a>
+            {%endif%}
+            {%else%}
+            <a href="{%  url 'connex:register' %}" class="btn-buy" >S'inscrire</a>
+            {%endif%}
+        </div>
+        <div class="section-pricing A">
+            <span class="featured">Z_aide</span>
+            <h3>MEDIUM</h3>
+            <div class="price">2000<sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-business.png" class="img-fluid">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 3 Mois</b>.</li>
+            </ul>
+            {% if request.user.is_authenticated %}
+            {% if plan == 'MEDIUM' %}
+            <a href="{% url 'connex:souscrib'%}?plan=MEDIUM" class="btn-buy" >Rénouveler</a>
+            {%else%}
+            <a href="{% url 'connex:souscrib'%}?plan=MEDIUM" class="btn-buy" >Acheter</a>
+            {%endif%}
+            {%else%}
+            <a href="{%  url 'connex:register' %}" class="btn-buy" >S'inscrire</a>
+            {%endif%}
+
+        </div>
+        <div class="section-pricing B">
+            <span class="featured">Z_aide</span>
+            <h3>PRO</h3>
+            <div class="price">5000<sup>FcfA</sup> <span></span> </div>
+            <img src="/static/assets/img/pricing-ultimate.png" class="img-fluid">
+            <ul>
+                <li ><i class="bx bx-check"></i><b>Cours.</b></li>
+                <li ><i class="bx bx-check"></i><b>Z_help-day.</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Niveau</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Quiz de Module </b>.</li>
+                <li ><i class="bx bx-check"></i><b>Exercices & corrigés</b>.</li>
+                <li ><i class="bx bx-check"></i><b>Validité: 5 mois</b>.</li>
+            </ul>
+            {% if request.user.is_authenticated %}
+            {% if plan == 'PRO' %}
+            <a href="{% url 'connex:souscrib'%}?plan=PRO" class="btn-buy" >Rénouveler</a>
+            {%else%}
+            <a href="{% url 'connex:souscrib'%}?plan=PRO" class="btn-buy" >Acheter</a>
+            {%endif%}
+            {%else%}
+            <a href="{%  url 'connex:register' %}" class="btn-buy" >S'inscrire</a>
+            {%endif%}
+        </div>
+    </div>
+</section>
+
+<!-- <section class="count">
+    <div class="section-header">
+        <h2> count</h2>
+        <p>Lorem ipsum dolor sit.</p>
+    </div>
+    <div class="count-section">
+        <div class="section-cards A">
+            <div class="icon"><i class="bx bxs-book-reader"></i></div>
+            <div class="present">
+                <h1 data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></h1>
+                <p>Cours</p>
+            </div>              
+        </div>
+        <div class="section-cards B">
+            <div class="icon"><i class="bx bxs-book-bookmark"></i></div>
+            <div class="present">
+                <h1 data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></h1>
+                <p>Exercices et Corrigés</p>
+            </div>              
+        </div>
+        <div class="section-cards C">
+            <div class="icon"><i class="bx bx-extension"></i></div>
+            <div class="present">
+                <h1  data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></h1>
+                <p>Quiz du jour</p>
+            </div> 
+        </div>
+        <div class="section-cards D">
+            <div class="icon"><i class="bx bxs-extension"></i></div>
+            <div class="present">
+                <h1 data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></h1>
+                <p>Quiz général de Niveau</p>
+            </div>                
+        </div>
+        <div class="section-cards E">
+            <div class="icon"><i class="bx bx-extension"></i></div>
+            <div class="present">
+                <h1 data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></h1> 
+                <p>Quiz Matiere/Module</p>         
+            </div>                
+        </div>
+        <div class="section-cards F">
+            <div class="icon"><i class="bx bx-customize"></i></div>
+            <div class="present">
+                <h1>235</h1>
+                <p>Lorem ipsum.</p>
+            </div>                
+        </div>
+    </div>
+</section> -->
+{%if user.is_authenticated %}
+{%else%}
+<button type="button" class="btn btn-primary d-none" id="liveToastBtn" >Show live toast</button>
+<div class="toast-container cookie position-fixed bottom-0 start-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="/static/assets/img/logoZ.png" class="rounded me-2" alt="...">
+      <strong class="me-auto">Cookies</strong>
+      <small></small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      <p>
+        En continuant à utiliser notre site Web, vous acceptez notre politique en matière de cookies
+      </p>
+    </div>
+  </div>
+</div>
+{%endif%}
+
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}
+
+{% block scripts %}
+<script>
+const toastTrigger = document.getElementById('liveToastBtn')
+
+const toastLiveExample = document.getElementById('liveToast')
+if (toastTrigger) {
+  window.addEventListener('load', () =>{
+    const toast = new bootstrap.Toast(toastLiveExample)
+    toast.show()
+
+  })
+  // toastTrigger.addEventListener('click', () => {
+  //   const toast = new bootstrap.Toast(toastLiveExample)
+
+  //   toast.show()
+  // })
+}
+</script>
+
+{%  endblock %}
+
+
+

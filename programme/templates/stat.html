@@ -1,0 +1,40 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bxs-objects-horizontal-left"></i>
+            </div>        
+            <p>Vos résultats aux Quizs</p>
+        </div>
+        <p> </p>
+        <p class="path">
+            <a href="{% url 'connex:home' %}">Acceuil</a>
+            <i class="bx bxs-chevron-right"></i>
+            <a href="">Résultats</a>
+          </p>  
+    </div>
+</section>
+
+<section class="stat " >
+    <div class="section-card  container">
+        <div class="card A">
+            <h5><i class="bx bxs-objects-horizontal-left"></i> Résultats</h5>
+            <h4><a href="{% url 'programme:generalresultats' %}"> Quizs Niveau</a></h4>
+        </div>
+        <div class="card B">
+            <h5><i class="bx bxs-objects-horizontal-left"></i> Résultats</h5>
+            <h4><a href="{% url 'Quiz:resultquizjour'  %}">Z_help-day</a></h4>
+        </div>
+        <div class="card C">
+            <h5><i class="bx bxs-objects-horizontal-left"></i> Résultats</h5>
+            <h4><a href="{%  url 'programme:quizresulte' %}"> Quizs de Modules</a></h4>
+        </div>
+    </div>
+</section>
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}

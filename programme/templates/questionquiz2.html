@@ -1,0 +1,79 @@
+{% extends 'base.html'  %}
+{% load static %}
+{%  block content  %}
+{% include 'nav.html' %}
+{% if jouer == True %}
+<script>
+swal("Vous avez déjà participé à ce Quiz. votre dernier score est de :{{score}}",{
+  buttons: false,
+  timer: 3000,
+});
+</script>
+{%else%}
+<script>
+    swal("Bonne chance!", {
+      buttons: false,
+      timer: 3000,
+    });
+</script>
+{%endif%}
+
+<section class="Question mt-5">
+    <div class="section-questions mt-5">
+        <div class="header">
+            <div class="present">
+                <h5 > Quiz numero : <b>{{details.numeroQuiz}}</b>  </h5>
+                <!-- <h5 >Matière : <b>{{details.matierequiz}}</b></h5>
+                <h5> Niveau : <b>{{details.dificulte}}</b>  </h5>
+                <h5> nombre de questioon : <b>{{details.nombreDequestion}}</b>    </h5> 
+                <h5> Total de point pour valider le test : <b>{{details.score}}%</b>   </h5> -->
+            </div>
+            <div class="time">
+                <!-- <h5>TEMPS</h5> -->
+                <p id="timer"></p>
+            </div>
+        </div>
+        <div class="body">
+            <h3>{{details.matierequiz}}</h3>
+            <div class="body-question" >               
+                <form class="form" id="quiz-form" action="{%  url 'programme:corect' int_quiz=details.pk %}" method="post" >
+                    {%csrf_token%}
+                    <div class="check" id="check">
+                       {% for q in details.get_question  %}
+                        <div class="numberQuestion">
+                            <div class="Number me-2"><p> {{forloop.counter}} </p>
+                            </div>
+                            <div class="quiz "><p> <b>Question:</b> {{q.text|safe}} </p></div>       
+                       </div>
+                       {% for a in q.get_reponse %}
+                       <div class="pipo">
+                            <div class="check-cards">                          
+                                <input type="radio" class="ans" id="{{q.text|safe}}-{{a.text|safe}}" value="{{a.text|safe}}" name="{{q.text|safe}}" >
+                                <label for="{{q.text|safe}}-{{a.text|safe}}" >{{a.text|safe}}</label>  
+                            </div>  
+                        </div>
+                        {% endfor %}         
+                    {% endfor %}  
+                    </div>
+                    <div class="botom mt-2 text-end">
+                        <button class="btn btn-success val " type="submit" >Valider</button>
+                    </div>
+              </form>               
+            </div>
+        </div>
+        <a href="{% url 'programme:listequiz' int_matiere=details.matierequiz.pk  %}" class="btn btn-danger mb-4 m-2 fw-bold" > Retour </a>
+    </div>
+</section>
+
+
+
+  
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}
+
+{% block scripts %}
+     <script src="{%  static 'assets/js/purecounter.js' %}"></script> 
+     <script src="{%  static  'assets/js/java.js' %}"></script>      
+{%  endblock %}    
+  

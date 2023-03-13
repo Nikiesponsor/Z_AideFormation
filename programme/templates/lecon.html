@@ -1,0 +1,196 @@
+{% extends 'base.html'  %}
+{% load static %}
+{% load myfilter %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="Quizs mt-5">
+    <div class="sectionQuiz">
+      <div class="image1">
+        <img src="/static/assets/img/logoZ.png">
+      </div>
+      
+      <div class="present">
+        <h1>Quizs de {{matiere}} {{matiere.matiere_niveau}}</h1>
+        <ul> 
+            <li><i class="bx bxs-dashboard"></i> <span>Culture Générale.</span> </li>
+            <li><i class="bx bxs-dashboard"></i> <span>actualités.</span></li>
+            <li><i class="bx bxs-dashboard"></i> <span>Psychotecnique.</span></li>
+            <li><i class="bx bxs-dashboard"></i> <span>Etc.</span></li>
+        </ul>
+        {% if user.is_authenticated %}
+        <a href="{% url 'programme:listequiz' int_matiere=matiere.pk  %}">Nouvelle partie</a>
+        {% else %}
+        <a href="" data-bs-toggle="modal" data-bs-target="#e">Nouvelle partie</a>
+        {%endif%}
+      </div>
+      <div class="image2">
+        <img src="/static/assets/img/ballon2.png">
+      </div>
+    </div>
+  </section>
+
+<section class="check mt-1">
+    <div class="section-header ">
+        <h1> {{ matiere.Nom_matiere}} </h1>
+        <!-- <p>Matières de la classe de {{ listeN.Nom_niveau }}</p> -->
+    </div>
+    <div class="search-bar container">
+        <form action="" class="form" method="POST" id="search-form" >
+          {%  csrf_token %}
+          <div class="section-input">
+            <input type="search" placeholder="recherche" name="search" id="search">
+            <button id="btnsearch" type="submit" class="bx bx-search"> </button>
+          </div>                       
+        </form>
+    </div>
+    <div class="section-check" id="box">
+      {% for lecon   in lecons   %}
+        <div class="check-card B ">
+            <div class="icon a"><i class="bx bxs-layer" style="color: {{color}} ;"></i></div>
+            <p><a href="{%  url 'programme:details' int_niveau=lecon.lecon_niveau.pk int_matiere=matiere.pk int_lecon=lecon.pk  %}">{{lecon.Nom_lecon}}</a> <br/>
+            {% if lecon.lecon_pdf   %}
+            <span class="text-success" style="font-size: 13px;">disponible</span>
+            {% else %}
+            <span class="text-danger" style="font-size: 13px;">indisponible</span>
+            {% endif  %} 
+        </p> 
+            {% if user.is_authenticated %}
+            {%  if lecon.pk|check2:request.user.pk %}
+            <div class="icon b "><button  class="bx bxs-star fav" value={{lecon.pk}}></button></div>
+            {%else%}
+            <div class="icon b "><button  class="bx bx-star fav" value={{lecon.pk}}></button></div>
+            {%endif%}
+            {% endif %}
+        </div>
+      {%endfor%}   
+    </div>
+</section>
+<div class="modal fade connex" id="e" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h5 class="modal-title text-black" id="exampleModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-body-confirm">
+          <div class="group">
+              <h1> Z_Aide </h1>
+              <p>Rejoigner la communauté Z_Aide</p>
+              <ul>
+                  <li><img src="/static/assets/img/Checklist_Monochromatic (1).png"></li>
+                  <li><img src="/static/assets/img/Checklist_Monochromatic (1).png"></li>
+                  <li><img src="/static/assets/img/Checklist_Monochromatic (1).png"></li>
+              </ul>
+          </div>
+          <div class="present">
+              <a href="{%  url 'connex:register'  %}" class="inscription">Inscription <i class='bx bx-right-arrow-alt'></i></a>
+              <p>Inscrivez pour  acceder aux Quizs</p>
+              <span>Déja un compte? <a href="{%  url 'connex:log'  %}">Connexion</a></span>
+              
+          </div>         
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+        <a type="button" class="btn btn-success" id=star href="">Oui</a>
+      </div> -->
+    </div>
+  </div>
+</div> 
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}
+{% block scripts %}
+<script >
+const url = window.location.href
+const favoris= [...document.getElementsByClassName("fav")]
+favoris.forEach( el =>{
+    el.addEventListener('click', (e) =>{
+        lecon=e.target.value
+        $.ajax({
+            type: 'GET',
+            url:'{% url "programme:favorislecon" %}',
+            data:{
+                lecon:`${lecon}`
+            },
+            success:function(response){
+                if(response.work === 'supprime'){
+                    e.target.classList.replace("bxs-star","bx-star")                    
+                }else{
+                    e.target.classList.replace("bx-star","bxs-star")
+                }
+            },
+            error: function(error){
+                console.log(error)
+            }
+        })
+    })
+} )
+
+</script>
+<script>
+  const senddata = (series) =>{
+    $.ajax({
+      type: 'post',
+      data: {
+        'csrfmiddlewaretoken' :csrf,
+        'series':series
+      },
+      url : "{%  url 'programme:leconsearch' int_matiere=matiere.pk %}",
+      success: function(response){
+        console.log(response)
+        const data = response.resulta
+        if(Array.isArray(data)){
+          resultbox.innerHTML=""
+          data.forEach(donne =>{
+          resultbox.innerHTML+=`
+          <div class="check-card B ">
+            <div class="icon a"><i class="bx bxs-layer" style="color: {{color}} ;"></i></div>
+            <p><a href="/start/{{matiere.matiere_niveau.pk}}/{{matiere.pk}}/${donne.id}/details">${donne.nom}</a> <br/>
+              <span class="${donne.couleur}" style="font-size: 13px;">${donne.etats}</span>
+            </p> 
+            
+          </div>          
+          `           
+          })
+        }else{
+          if(search_input.value.length > 0){
+            // resultbox.classList.add("d-none")
+            resultbox.innerHTML =`
+            <div class="text-center"><b>${data}</b></div>
+            `
+          }else{
+            resultbox.classList.remove("d-none")
+          }
+        }
+      },
+      error : function(error){
+        console.log(error)
+      }
+    })
+  }
+  const search_form= document.getElementById("search-form")
+  const search_input = document.getElementById("search")
+  const resultbox= document.getElementById("box")
+  const csrf= document.getElementsByName("csrfmiddlewaretoken")[0].value
+  console.log(csrf)
+
+  search_input.addEventListener('keyup', e=>{
+    console.log(e.target.value)
+    series=e.target.value 
+    // if(series!=''){
+    //   resultbox.classList.add("d-none")
+
+    // }else{
+    //   resultbox.classList.remove("d-none")
+    // }
+    senddata(series);
+    
+  })
+
+</script>      
+{%  endblock %}
+
+
+
+

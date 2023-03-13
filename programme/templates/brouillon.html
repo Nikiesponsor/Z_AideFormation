@@ -1,0 +1,20 @@
+data-idfavos={{nikie|index:forloop.counter}}
+
+
+id={{nikie|index:forloop.counter0}} value={{nikie|index:forloop.counter0}} dataidmatiere={{matiere.pk}}
+
+
+
+
+{%  if matiere.pk|check:request.user.id %}
+<div class="icon icons">               
+    <a class="fav"  href="{%  url 'programme:favoris_add' int_matiere=matiere.pk %}" > <i class="bx bxs-heart"></i> </a>     
+</div>
+{%else%}
+<div class="icon icons">               
+  <a class="fav"  href="{%  url 'programme:favoris_add' int_matiere=matiere.pk %}" > <i class="bx bx-heart"></i> </a>     
+</div>
+{%endif%}
+
+
+{% url 'programme:suppquiz'  int_quiz=quiz.pk %}

@@ -1,0 +1,29 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+{% if messages   %}
+{%  for message in messages  %}
+       <script >
+             swal({
+                title:"{{message}}",
+                text:"",
+                icon:"error"
+             });      
+       </script>                    
+{%endfor%}
+{% endif %} 
+<section id="pricings " class="pricings mt-5 ">
+    <div class="container  ">
+        <header class="section-header">           
+            <div class="alert alert-info" style="background: #3e8dae; padding: 7px; color: #fff; margin: 1rem 5rem; font-weight: 700;">
+                 Veuillez entamez une partie de Quiz !
+            </div>
+        </header>
+    </div>
+</section>
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}
+

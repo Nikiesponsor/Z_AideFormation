@@ -1,0 +1,216 @@
+{% extends 'base.html'  %}
+{% load static %}
+{% load myfilter %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<style>
+    .results{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    /* border: 2px solid black;  */
+}
+.results .question{
+    display: flex;
+    gap: 10px;
+    margin: 1rem 7rem;
+
+}
+.results  .question mjx-container[jax="CHTML"][display="true"]{
+    font-size: 20px !important;
+    display: inline  !important;
+
+}
+.results .question .number p{
+    background: #3e8dae;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding: 2px;
+    font-weight: bold;
+
+}
+
+.results .resulta{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin: 1rem 7rem;
+    gap: 1rem;
+    justify-content: center;
+
+}
+.results .resulta .cards{
+    box-shadow: 0px 0 5px rgba(18, 18, 18, 0.6);
+    padding: 10px;
+    display: flex;
+    gap: 1rem;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.6s;
+    justify-content: space-between;
+}
+.results .resulta .cards .leter{
+    padding-right: 10px;
+    border-right: 2px solid #52b8c5;
+}
+.results .resulta .cards .present mjx-container[jax="CHTML"][display="true"]{
+    font-size: 20px !important;
+    display: inline  !important;
+
+}
+
+div.math   mjx-container[jax="CHTML"][display="true"]{
+    font-size: 20px !important;
+    display: inline  !important;
+
+}
+
+.results .resulta .cards .leter p{
+    font-weight: bold;
+}
+.results .resulta .cards .icon { 
+    font-size: 35px;
+}
+.results .resulta .cards.A{
+    background: #5fd25f;
+    color: #fff;
+}
+.results .resulta .cards.B .icon i{
+    color: red;
+}
+
+
+@media screen  and (max-width: 945px){
+    .results .resulta{
+        margin: 0 3rem;
+    }
+    .results .question{
+        margin: 1rem 3rem;
+
+    }
+}
+@media screen  and (max-width: 741px){
+    .results .resulta{
+        margin: 0 1rem;
+    }
+    .results .question{
+        margin: 1rem 1rem;
+
+    }
+}
+@media screen  and (max-width: 641px){
+    .results .resulta{
+        margin: 0 4rem;
+        grid-template-columns: repeat(1,1fr);
+    }
+    .results .question{
+        margin: 1rem 1rem;
+
+    }
+    .results .question p{
+        font-size: 14px;
+    }
+    .results .resulta .cards p{ 
+        font-size: 14px;
+    } 
+    .results .resulta .cards .icon {
+        font-size: 25px;
+    }
+
+}
+
+@media screen  and (max-width: 428px){
+    .results .resulta{
+        margin: 0 1rem;
+        grid-template-columns: repeat(1,1fr);
+    }
+    .results .question{
+        margin: 1rem 1rem;
+    }
+}
+
+</style>
+
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bx-extension"></i>
+            </div>        
+            <p>{{quiz.nomQuiz}} N° : {{quiz.numeroQuiz}}</p>
+        </div>
+        <p></p>
+    </div>
+</section>
+
+<section class="results h5">
+    {% for q in quiz.get_question  %}
+    <div class="question h5">
+        <div class="number me-2">
+           <p>{{forloop.counter}} </p>
+        </div>
+        <p>
+           <b> Question :</b>{{q.text|safe}}
+        </p>
+    </div>
+    <div class="resulta" >
+        {% for a in q.get_reponse %}
+         {% if a.correct == True  %}
+        <div class="cards A">
+            <div class="leter">
+                <p> {{forloop.counter|to_char}}</p>
+           </div>
+           <div class="present">
+               <p>                 
+                      {{a.text|safe}}                 
+               </p>         
+           </div>
+           <div class="icon">
+               <i class="bx bxs-badge-check"></i>
+           </div>
+        </div>
+        {%else%}
+        <div class="cards B">
+            <div class="leter">
+                <p>{{forloop.counter|to_char}}</p>
+           </div>
+           <div class="present">
+            <p>{{a.text|safe}}</p>                
+           </div>
+           <div class="icon">
+               <i class="bx bxs-x-circle"></i>
+           </div>
+        </div>
+        {%endif%}
+        {%endfor%}
+    </div>
+{%endfor%}
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$']],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      messageStyle: "none",
+      "HTML-CSS": {
+          preferredFont: "TeX",
+          availableFonts: ["STIX","TeX"],
+          styles: {".MathJax": {color: "#CCCCCC"}}
+          }
+    });
+</script>
+
+<script src="/static/assets/js/ASCIIMathML.js"></script>
+<script src="/static/assets/js/package/es5/tex-mml-chtml.js"></script>
+
+
+{% include 'footer.html' %}
+{% endblock  %}

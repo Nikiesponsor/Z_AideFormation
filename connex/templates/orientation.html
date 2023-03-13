@@ -1,0 +1,214 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bx-trip"></i>
+            </div>        
+            <p>S'orienter sur Z_aide </p>
+        </div>
+        <p>Fonctionnement de Z_aide </p>
+        <p class="path">
+          <a href="{% url 'connex:home' %}">Acceuil</a>
+          <i class="bx bxs-chevron-right"></i>
+          <a href="">S'orienter</a>
+        </p>  
+    </div>
+</section>
+
+<section id="features" class="features">
+  <div class="container" data-aos="fade-up">
+  <div class="section-header">
+          <h2>S'orienter</h2>
+          <p></p>
+  </div>
+    <ul class=" nav nav-tabs row gy-4 d-flex">
+      <li class="nav-item col-6 col-md-4 col-lg-2">
+        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+          <i class="bx bxs-category-alt " style="color: cyan;"></i>
+          <h4>Niveaux & Z_help-day</h4>
+        </a>
+      </li>
+
+      <li class="nav-item col-6 col-md-4 col-lg-2">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
+          <i class="bx bx-extension color-indigo"></i>
+          <h4>Z_help-day</h4>
+        </a>
+      </li>
+
+      <li class="nav-item col-6 col-md-4 col-lg-2">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
+          <i class="bx bx-bar-chart-alt-2 " style="color: rgb(30, 190, 190);"></i>
+          <h4>Les Niveaux</h4>
+        </a>
+      </li>
+
+      <li class="nav-item col-6 col-md-4 col-lg-2">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
+          <i class="bx bxs-blanket " style="color: red;"></i>
+          <h4>Cours et exercices</h4>
+        </a>
+      </li>
+
+      <li class="nav-item col-6 col-md-4 col-lg-2">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-5">
+          <i class="bx bx-objects-vertical-bottom " style="color: blue;"></i>
+          <h4>Vos résultats</h4>
+        </a>
+      </li>
+
+      <li class="nav-item col-6 col-md-4 col-lg-2">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-6">
+          <i class="bx bxs-book-content " style="color: orange;"></i>
+          <h4>Corrections détaillées des Quizs</h4>
+        </a>
+      </li>
+
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active show" id="tab-1">
+        <div class="row gy-4">
+          <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+            <h3>Niveaux & Z_help-day</h3>
+            <ul>
+              <li><i class="bx bxs-category-alt"></i><b>Niveaux:</b> Il ya trois niveaux ( BEPC ,BAC et LICENCE ) chaque niveau est composé : <br/>
+                  <b>-Des  quizs de type niveau.</b> <br/>  
+                 <b>-Des cours et des exercices associées au cours.</b> 
+              </li>
+              <li><i class="bx bxs-category-alt"></i> <b>Z_help-day:</b>
+                  Chaque jour un ensemble de questionnaire est mise a la disposition des utilisateurs de Z_aide.<br/>
+                  Ces questionnaires ne  visent pas un niveau en particulier et sont composés  de  questions d'actualités,de culture générale,de spytcho technique etc.<br/>
+                  <b>Elles ont pour but d'améliorer votre  niveau  et de vous rendre compétitif.</b>
+              </li>              
+            </ul>
+
+          </div>
+          <div class="col-lg-4 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+            <img src="/static/assets/img/niveaux.png" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-2">
+        <div class="row gy-4">
+          <div class="col-lg-8 order-2 order-lg-1">
+            <h3>Z_help-day</h3>
+            <p>
+              Chaque jour un ou plusieurs questionnaires sont mis a votre disposition afin de vous améliorez.
+              Ces questionnaires sont composés des questions divers<b>(Actualité,Mathematiques,cultures générale etc)</b>. 
+            </p>
+            <ul>
+              <li><i class="bx bxs-category-alt"></i> <b>Les Quiz du jour:</b>
+                  Chaque quiz est composé: <br/> 
+                  <!-- <b>D'un niveau : Difficile facile ou normal ( sauf pour les quiz du jour)</b> <br/> -->
+                  <b>D'un temps: Pour vous rendre compétitif </b><br/>
+                  <b>D'un score: Pour soit être gagnant du test ou perdant </b><br/>                   
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 order-1 order-lg-2 text-center">
+            <img src="/static/assets/img/jour.png" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-3">
+        <div class="row gy-4">
+          <div class="col-lg-8 order-2 order-lg-1">
+            <h3>Les Niveaux</h3>
+            <p>
+              Il ya trois niveaux <b>BEPC ,BAC et LICENCE</b>
+            </p>
+            <ul>
+              <li><i class="bx bxs-category-alt"></i>
+                  <b>BEPC:</b> <br/>
+                  Il est composé:<br/>
+                  <b>-Quizs de type Niveau:</b> Ce sont des quizs de plusieurs matières combinés <br/>
+                  <b>-Quizs de matière:</b> Ce sont des quizs sur une matiere en particulier.<br/>                    
+                  <b>-Cours et exercices</b>                   
+              </li>
+              <li><i class="bx bxs-category-alt"></i> 
+                  <b>BAC:</b> <br/>
+                  Il est composé:<br/>
+                  <b>-Quizs de type Niveau:</b> Ce sont des quizs de plusieurs matières combinés.<br/> 
+                  <b>-Quizs de matière:</b> Ce sont des quizs sur une matiere en particulier.<br/>
+                  <b>-Cours et exercices</b>
+              </li>
+              <li><i class="bx bxs-category-alt"></i> 
+                  <b>LICENCE:</b> <br/>
+                  Il est composé:<br/>
+                  <b>-Quizs de type Niveau:</b> Il s'agit d'un combiné de questionnaire issue de différentes unité de formations.<br/> 
+                  <b>-Quizs dans une unites de formation:</b> Ce sont des quizs sur une unité de formation en particulier.<br/>
+                  <b>-Cours et exercices</b> 
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 order-1 order-lg-2 text-center">
+            <img src="/static/assets/img/niveaux.png" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-4">
+        <div class="row gy-4">
+          <div class="col-lg-8 order-2 order-lg-1">
+            <h3>Cours et exercices</h3>
+            <p>
+                Apprenez et entrainnez vous avec des contenus de qualité sur notre plateforme.
+            </p>
+            <ul>
+              <li><i class="bx bxs-category-alt"></i> <b>Aprrendre avec les  Cours:</b> Acceder rapidement aux cours pour vous ressourcer.</li>
+              <li><i class="bx bxs-category-alt"></i> <b>S'entrainnez avec des  exercices:</b> Acceder à de nombreux exercices et corrigées. </li>              
+            </ul>
+          </div>
+          <div class="col-lg-4 order-1 order-lg-2 text-center">
+            <!-- <img src="/static/assets/img/niveau.png" alt="" class="img-fluid"> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-5">
+        <div class="row gy-4">
+          <div class="col-lg-8 order-2 order-lg-1">
+            <h3>Vos résultats</h3>
+            <p>
+              Pour chaque Quiz tenté vos résultats sont enregistrés afin de vous permettre de voir votre progression.
+            </p>
+          </div>
+          <div class="col-lg-4 order-1 order-lg-2 text-center">
+            <img src="/static/assets/img/stat.png" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab-6">
+        <div class="row gy-4">
+          <div class="col-lg-8 order-2 order-lg-1">
+            <h3>Corrections détaillées des Quizs</h3>
+            <p>
+              La correction détaillée vous donne la possibilité de comprendre le choix de la bonne réponse a travers des indications.
+            </p>
+          </div>
+          <div class="col-lg-4 order-1 order-lg-2 text-center">
+            <img src="/static/assets/img/correct.png" alt="" class="img-fluid">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+{% include 'footer.html' %}
+{% endblock  %}

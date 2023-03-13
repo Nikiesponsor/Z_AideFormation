@@ -1,0 +1,93 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="profile mt-5">
+  {%if abon == 'FREE' %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Bienvenue sur Z_Aide.</strong>Veuillez Vous abonnez!.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div> 
+  {%else%} 
+  {%endif%} 
+    <div class="profile-section">
+        <div class="profile-header">
+            <p> <a href="{%  url 'connex:home'  %}"> Acceuil </a> /<a href="#"> {{ request.user.email  }} </a> / Profile</p>
+        </div>
+         <div class="profile-body">
+             <div class="section-img">
+                 <img src="/static/assets/img/user1.png" ></img>
+                 <h4>{{profile.email}}</h4>
+                 <div class="link">
+                    {%if abon == 'FREE' %}
+                    <a class="link1" href="{% url 'connex:plan' %}"> Abonnez vous</a>
+                    {%else%}  
+                    <a  class="link2" href="{%  url 'connex:profilechange' %}"> Modifier <i class="bx bx-edit"></i></a>
+                    {%endif%}                                   
+                 </div> 
+             </div>
+             <div class="section-present">
+                    <div class="name">
+                        <h4>Nom et prenom : </h4>
+                        <p>{{profile.last_name}} {{profile.first_name}}</p>             
+                    </div>
+                    <hr>
+                    <div class="email">
+                        <h4>Email :</h4>
+                        <p>{{profile.email}}</p>             
+                    </div>
+                    <hr>
+                    <div class="tel">
+                        <h4>Telephone :</h4>
+                        <p>{{profile.telphone}}</p>             
+                    </div>
+                    <hr>
+                    <div class="level">
+                        <h4>Abonnement : </h4>
+                        {% if abon == 'FREE'   %}
+                        <p>{{abon}} <i class="bx bxs-info-circle " data-bs-toggle="modal" data-bs-target="#exampleModal1"></i></p>
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title " id="exampleModalLabel"><i class="bx bxs-bell" ></i>Abonnez Vous!</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="modal-body-confirm">
+                                    <img  src="/static/assets/img/pricing.png" class="img-fluid">                                         
+                                </div>
+                                <div class="modal-footer">
+                                  <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annulé</button> -->
+                                  <a type="button" class="btn btn-success" id="star" href="{% url 'connex:plan'  %}">Continuer</a>
+                                </div>
+                              </div>
+                            </div>
+                        </div>   
+                        {%else%}
+                        <p class="ok">{{abon}} <i  class="bx bxs-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal2"></i></p> 
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title " id="exampleModalLabel"><i class="bx bxs-bell" ></i></h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" id="modal-body-confirm">
+                                    <p class="text-center"><b>Date d'expiration: {{date.date_expiration}}</b> </p>                                         
+                                </div>
+                                <div class="modal-footer">
+                                  <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annulé</button> -->
+                                  <!-- <a type="button" class="btn btn-success" id="star" href="#">Continuer</a> -->
+                                </div>
+                              </div>
+                            </div>
+                        </div> 
+                        {%endif%}            
+                   </div>
+             </div>
+        </div>
+    </div>
+  </section>
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}

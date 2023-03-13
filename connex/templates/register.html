@@ -1,0 +1,101 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="login mt-5">
+    {% if messages   %}
+       {%  for message in messages  %}            
+           <script>
+                 swal({
+                    title:"connexion a échoué",
+                    text:"{{message}}",
+                    icon:"error"
+                 })      
+           </script>                           
+       {%endfor%} 
+   {% endif %} 
+    <div class="section-log">
+        <div class="form login">
+            <span class="title">Inscription</span>
+            <form method="POST" action="">
+                {%csrf_token%}
+                <div class="section-input">
+                    {{form.email}}
+                    <i class="bx bxs-envelope icon"></i>
+                </div>
+
+                {%  if form.email.errors  %}
+                {%  for error in form.email.errors %}
+                   <div><small class="text-danger mb-1"> {{error}} </small></div>
+                {% endfor%}
+                {%endif%} 
+
+
+                <div class="section-input">
+                    {{form.last_name}}
+                    <i class="bx bxs-user icon"></i>
+                </div>
+
+                <div class="section-input">
+                    {{form.first_name}}
+                    <i class="bx bx-user icon"></i>
+                </div>
+                <!-- <div class="section-input">
+                    {{form.telphone}}
+                    <i class="bx bxs-phone icon"></i>
+                </div>
+                {%  if form.telphone.errors  %}
+                {%  for error in form.telphone.errors %}
+                   <div><small class="text-danger mb-1"> {{error}} </small></div>
+                {% endfor%}
+                {%endif%}  -->
+               
+                <div class="section-input">
+                    {{form.password1}}
+                    <i class="bx bx-key icon"></i>
+                    <i class="bx bxs-show vision"></i>
+                </div>
+                {%  if form.password1.errors  %}
+                {%  for error in form.password1.errors %}
+                   <div><small class="text-danger mb-1"> {{error}} </small></div>
+                {% endfor%}
+                {%endif%} 
+
+                <div class="section-input">
+                    {{form.password2}}
+                    <i class="bx bxs-lock-alt icon"></i>
+                    <i class="bx bxs-show vision"></i>
+                </div>
+                {%  if form.password2.errors  %}
+                {%  for error in form.password2.errors %}
+                   <div><small class="text-danger mb-1"> {{error}} </small></div>
+                {% endfor%}
+                {%endif%} 
+
+                <div class="checkbox">
+                    <div class="checkbox-content">
+                        {{form.ceckbox_info}}
+                        <!-- <input type="checkbox" id="check" required> -->
+                        <label for="id_ceckbox_info" class="text" >Acepter les<a href="{% url 'connex:Termsuse'  %}"> conditions d'utilisation</a></label>
+                    </div> 
+                    {%  if form.ceckbox_info.errors  %}
+                    {%  for error in form.ceckbox_info.errors %}
+                       <div><small class="text-danger mb-1"> {{error}} </small></div>
+                    {% endfor%}
+                    {%endif%} 
+                    
+                </div>
+                <div class="section-input submit-butom">
+                    <input type="submit" value="Connexion">
+                </div>
+            </form>
+            <div class="register">
+                <span> Déja un compte? <a href="{%  url 'connex:log'  %}">Connexion</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include 'footer.html' %}
+{% endblock  %}

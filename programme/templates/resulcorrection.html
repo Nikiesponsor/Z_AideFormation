@@ -1,0 +1,87 @@
+{% extends 'base.html'  %}
+{% load static %}
+{% load myfilter %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="First mt-5">
+    <div class="second">
+        <div class="present">
+            <div class="icon">
+                <i class="bx bx-extension"></i>
+            </div>        
+            <p>{{quiz.matierequiz}} </p>
+        </div>
+        <p></p>
+    </div>
+</section>
+
+<section class="results h5">
+    {% for q in quiz.get_question  %}
+    <div class="question h5">
+        <div class="number me-2">
+           <p>{{forloop.counter}} </p>
+        </div>
+        <p>
+           <b> Question :</b>{{q.text|safe}}
+           {% if q.indication  %}         
+            <button class="bx bxs-error"  type="button" data-bs-toggle="offcanvas" data-bs-target="#e{{q.pk}}" aria-controls="offcanvasBottom"></button>
+            <div class="offcanvas offcanvas-bottom indic" tabindex="-1" id="e{{q.pk}}" aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Indication</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body small">
+                        <p> {{q.indication}} </p>
+                        <div class="lecon-biuton mt-3"> 
+                            <div class="buton me-2">
+                                <a class="btn btn-secondary">Telecharge</a>
+                            </div>
+                            <div class="buton">
+                                <a class="btn btn-secondary">Telecharge</a>
+                            </div>
+                      </div>
+                </div>
+            </div>
+            {%endif%}
+        </p>
+    </div>
+    <div class="resulta" >
+        {% for a in q.get_reponse %}
+         {% if a.correct == True  %}
+        <div class="cards A">
+            <div class="leter">
+                <p> {{forloop.counter|to_char}}</p>
+           </div>
+           <div class="present">
+               <p>
+                  {{a.text|safe}}
+               </p>         
+           </div>
+           <div class="icon">
+               <i class="bx bxs-badge-check"></i>
+           </div>
+        </div>
+        {%else%}
+        <div class="cards B">
+            <div class="leter">
+                <p>{{forloop.counter|to_char}}</p>
+           </div>
+           <div class="present">
+            <p>{{a.text|safe}}</p>                
+           </div>
+           <div class="icon">
+               <i class="bx bxs-x-circle"></i>
+           </div>
+        </div>
+        {%endif%}
+        {%endfor%}
+    </div>
+{%endfor%}
+</section>
+
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}
+  
+  

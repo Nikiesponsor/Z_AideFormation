@@ -1,0 +1,57 @@
+{% extends 'base.html'  %}
+{% load static %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="Question mt-5">
+    <div class="section-questions mt-5">
+        <div class="header">
+            <div class="present">
+                <h5> Quiz numero : <b>{{details.numeroQuiz}}</b>  </h5>
+                <h5>Matière : <b>{{details.matierequiz}}</b></h5>
+                <h5> Niveau : <b>{{details.dificulte}}</b>  </h5>
+                <h5> nombre de questioon : <b>{{details.nombreDequestion}}</b>    </h5> 
+                <h5> Total de point pour valider le test : <b>{{details.score}}%</b>   </h5>
+            </div>
+            <div class="time">
+                <h5>TEMPS</h5>
+                <p id="timer"></p>
+
+            </div>
+        </div>
+        <div class="body">
+            <h3>{{details.matierequiz}}</h3>
+            <div class="body-question">               
+                <form class="form" id="quiz-form">
+                    {%csrf_token%}
+                    <div class="check" id="check">                                                                                
+                    </div>
+
+                    <div class="botom mt-2 text-end">
+                        <input type="submit" value="valider">
+                    </div>
+              </form>               
+            </div>
+            <div class="score-box" id="score-box">
+
+            </div>
+            <div class="resultbox" id="resultbox">
+
+            </div>
+            
+        </div>
+        <a href="" class="btn btn-primary mb-4 m-5 fw-bold" > Retour </a>
+    </div>
+</section>
+
+
+
+  
+<div id="preloader"></div>
+{% include 'footer.html' %}
+{% endblock  %}
+
+{% block scripts %}
+     <script src="{%  static 'assets/js/purecounter.js' %}"></script> 
+     <script src="{%  static  'assets/js/java.js' %}"></script>       
+{%  endblock %}    

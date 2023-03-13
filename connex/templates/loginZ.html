@@ -1,0 +1,61 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+
+<section class="login  mt-5">
+    {% if messages   %}
+    {%  for message in messages  %}
+        {%  if message.tags == 'success'   %}
+           <script >
+                 swal({
+                    title:"{{message}}",
+                    text:"",
+                    icon:"success"
+                 })      
+           </script>
+        {% else   %}
+            <script >
+                swal({
+                  title:"{{message}}",
+                  text:"",
+                  icon:"error"
+                })      
+            </script>
+        {%endif%}                       
+  {%endfor%}
+  {% endif %} 
+    <div class="section-log ">
+        <div class="form login ">
+            <span class="title">Bon retour</span>
+            <form method="POST" action="">
+                {%csrf_token%}
+                <div class="section-input">
+                    {{form.email}}
+                    <i class="bx bxs-envelope icon"></i>
+                </div>
+                <div class="section-input">
+                    {{form.password}}
+                    <i class="bx bxs-lock-alt icon"></i>
+                    <i class="bx bxs-show vision"></i>
+                </div>
+                <div class="checkbox">
+                    <div class="checkbox-content">
+                        <!-- <input type="checkbox" id="check">
+                        <label for="check" class="text">Remenber me</label> -->
+                    </div> 
+                    <a href="{% url 'reset_password'  %}" class="text">Mots de passe oublié</a>
+                </div>
+                <div class="section-input submit-butom">
+                    <input type="submit" value="Connexion">
+                </div>
+            </form>
+            <div class="register">
+                <span>Vous débuter sur Z_aide? <a href="{% url 'connex:register'  %}"> S'inscrire</a></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'footer.html' %}
+{% endblock  %}

@@ -1,0 +1,52 @@
+{% extends 'base.html'  %}
+{% load static %}
+{%  block content  %}
+{% include 'nav.html' %}
+
+<section class="login  mt-5">
+    {% if messages   %}
+    {%  for message in messages  %}            
+           <script>
+                 swal({
+                    title:"connexion a échoué",
+                    text:"{{message}}",
+                    icon:"error"
+                 })      
+           </script>                           
+    {%endfor%} 
+    {% endif %} 
+    <div class="section-log ">
+        <div class="form login ">
+            <span class="title">Modification</span>
+            <form method="POST" action="">
+                {%csrf_token%}
+                <div class="section-input">
+                    {{form.nom}}
+                    <i class="bx bxs-user icon"></i>
+                </div>
+                <div class="section-input">
+                    {{form.prenom}}
+                    <i class="bx bx-user icon"></i>
+                </div>
+                <!-- <div class="section-input">
+                    {{form.telephone}}
+                    <i class="bx bxs-phone icon"></i>
+                </div>
+                {% if form.telephone.errors  %}
+                   {%   for error in form.telephone.errors  %}
+                   <div><small class="text-danger mb-1"> {{error}} </small></div>
+                   {%endfor%}
+                {% endif  %} -->
+                <div class="section-input submit-butom">
+                    <input type="submit" value="Modifier">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}
+{% endblock  %}
+{% block scripts %}
+     <script src="{%  static  'assets/js/profile.js' %}"></script>     
+{%  endblock %}

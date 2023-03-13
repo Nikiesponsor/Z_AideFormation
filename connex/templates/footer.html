@@ -1,0 +1,44 @@
+<section class="before-footer" >
+    <div class="section-footer">
+        <div class="footer-info A" > 
+            <h2>Z_aide.</h2>
+            <p>Profitez du meilleurs contenu chez Z_Aide.
+            </p>
+            <div class="social">
+                <a href="#"><i class="bx bxl-facebook-circle" ></i> </a>
+                <a href="#"><i class="bx bxl-whatsapp" ></i></a>
+                <a href="#"><i class="bx bxl-telegram" ></i> </a>
+            </div>
+        </div>
+        <div class="footer-info B" > 
+            <h3>Liens Utils</h3>
+            <ul>
+                {% if user.is_authenticated  %}
+                <li><a href="{% url 'connex:home'  %}"><i class="bx bx-chevrons-right"></i> Acceuil</a></li>
+                <li><a href="{%  url 'connex:orientation'  %}"><i class="bx bx-chevrons-right"></i>S'orienter</a></li>
+                <li><a href="{% url 'programme:stat'  %}"><i class="bx bx-chevrons-right"></i>Resultats Quizs</a></li>
+                <li><a href="{% url 'programme:listefavoris' %}"><i class="bx bx-chevrons-right"></i>Favoris</a></li>
+                <li><a href="{% url 'connex:deconnexion'  %}"><i class="bx bx-chevrons-right"></i>Déconnexion</a></li>
+                {%else%}
+                <li><a href="{% url 'connex:home'  %}"><i class="bx bx-chevrons-right"></i> Acceuil</a></li>
+                <li><a href="{% url 'connex:log'  %}"><i class="bx bx-chevrons-right"></i>Connexion</a></li>
+                <li><a href="{% url 'connex:register'  %}"><i class="bx bx-chevrons-right"></i>Inscription</a></li>
+                <li><a href="{%  url 'connex:orientation'  %}"><i class="bx bx-chevrons-right"></i>S'orienter</a></li>
+                {% endif %} 
+            </ul>
+        </div>
+        <div class="footer-info C" >
+            <h3>contact Us</h3>
+            <ul>
+                <li><a href="{% url 'connex:about'  %}"><i class="bx bx-chevrons-right"></i>A propos de Nous</a></li>
+                <li><a href="{% url 'connex:contact'  %}"><i class="bx bx-chevrons-right"></i>Nous contactez</a></li>
+            </ul>
+        </div>
+    </div>
+  </section>
+  <footer>
+    <div class="info">
+        <p> © Copyright <span>Z_Aide.</span>  All Rights Reserved </p>
+        <p> Designed by <a href="#">IfontWeb</a></p>
+    </div>       
+  </footer>
